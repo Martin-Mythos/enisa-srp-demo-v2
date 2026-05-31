@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P04 · Evidence & Receipt — Evidence Console</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="side">
+      <div class="brand"><div class="brand-mark">SRP</div><div><h1><span class="en">ENISA SRP Readiness</span><span class="cn">ENISA SRP 准备度</span></h1><p><span class="en">Evidence Console</span><span class="cn">证据控制台</span></p></div></div>
+      <nav class="nav" aria-label="Screens">
+        <span class="nav-label"><span class="en">Journey</span><span class="cn">旅程</span></span>
+        <a href="index.html"><span class="idx">00</span><span class="nav-title"><span class="en">Launcher</span><span class="cn">入口总览</span></span><span class="nav-meta">Index</span></a>
+        <a href="p00-decision-gate.html"><span class="idx">P00</span><span class="nav-title"><span class="en">Decision Gate</span><span class="cn">决策门</span></span><span class="nav-meta">Gate</span></a>
+        <a href="workbench.html"><span class="idx">P01</span><span class="nav-title"><span class="en">Ops Overview</span><span class="cn">运营总览</span></span><span class="nav-meta">Optional</span></a>
+        <a href="case-sharetable.html"><span class="idx">P02</span><span class="nav-title"><span class="en">Case &amp; Data</span><span class="cn">案例与数据</span></span><span class="nav-meta">Case</span></a>
+        <a class="active" href="evidence-receipt.html"><span class="idx">P04</span><span class="nav-title"><span class="en">Evidence</span><span class="cn">证据回执</span></span><span class="nav-meta">Trace</span></a>
+        <a href="readiness-dashboard.html"><span class="idx">P05</span><span class="nav-title"><span class="en">Dashboard</span><span class="cn">仪表盘</span></span><span class="nav-meta">Ready</span></a>
+        <a href="demo-observer.html"><span class="idx">P06</span><span class="nav-title"><span class="en">Observer View</span><span class="cn">观察者视图</span></span><span class="nav-meta">Safe</span></a>
+        <span class="nav-label"><span class="en">Reference</span><span class="cn">参考</span></span>
+        <a href="design-system.html"><span class="idx">DS</span><span class="nav-title"><span class="en">Design System</span><span class="cn">设计系统</span></span><span class="nav-meta">System</span></a>
+      </nav>
+      <div class="side-footer"><div class="role-chip"><b>INV-4</b><span><span class="en">received_registered is never rendered as legal acceptance.</span><span class="cn">received_registered 绝不渲染为法律接受。</span></span></div></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumbs">P04 / submitted_payload_snapshot → PortalReceiptEvidence</div>
+        <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
+      </header>
+
+      <section class="content" data-screen-label="P04 Evidence & Receipt">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow"><span class="en">Receipt semantics guard</span><span class="cn">回执语义守卫</span></p>
+            <h2><span class="en">Generate an immutable snapshot, then attach receipt evidence.</span><span class="cn">先生成不可变快照，再附加回执证据。</span></h2>
+            <p><span class="en">The workflow keeps submitted_payload_snapshot distinct from PortalReceiptEvidence and keeps source limitations visible after success.</span><span class="cn">工作流区分 submitted_payload_snapshot 与 PortalReceiptEvidence，并在成功后持续展示来源限制。</span></p>
+          </div>
+          <div class="head-actions"><span data-package-status class="pill warn">pending</span><span data-receipt-status class="pill warn">receipt pending</span></div>
+        </div>
+
+        <div class="callout danger mb-4">
+          <strong><span class="en">Received / registered is NOT legal acceptance</span><span class="cn">received_registered 绝不是 legal acceptance</span></strong>
+          <span><span class="en">PortalReceiptEvidence proves a registration event only. It does not prove payload completeness, regulatory acceptance, or legal validation.</span><span class="cn">PortalReceiptEvidence 只能证明登记事件，不证明 payload 完整性、监管接受或法律验证。</span></span>
+        </div>
+
+        <div class="panel mb-4">
+          <div class="panel-head">
+            <div><h3 class="panel-title"><span class="en">Scenario 0 next step</span><span class="cn">Scenario 0 下一步</span></h3><p class="panel-sub"><span class="en">Dashboard readiness becomes final only after PortalReceiptEvidence is attached.</span><span class="cn">只有附加 PortalReceiptEvidence 后，Dashboard 准备度才进入最终态。</span></p></div>
+            <span data-receipt-status class="pill warn">receipt pending</span>
+          </div>
+          <div data-dashboard-pending class="callout warning"><strong><span class="en">Readiness dashboard not final</span><span class="cn">准备度仪表盘尚未最终化</span></strong><span><span class="en">Attach PortalReceiptEvidence before presenting P05 as the current readiness view.</span><span class="cn">在把 P05 作为当前准备度视图展示前，必须先附加 PortalReceiptEvidence。</span></span></div>
+          <div data-dashboard-success class="callout info" hidden><strong><span class="en">Snapshot and receipt evidence complete</span><span class="cn">快照与回执证据已完成</span></strong><span><span class="en">The dashboard can now reflect submitted_payload_snapshot and received_registered evidence while keeping limitations visible.</span><span class="cn">仪表盘现在可反映 submitted_payload_snapshot 与 received_registered 证据，同时继续展示限制。</span></span></div>
+        </div>
+
+        <div class="grid two">
+          <div class="panel">
+            <div class="panel-head"><div><h3 class="panel-title">submitted_payload_snapshot</h3><p class="panel-sub"><span class="en">Created only after ShareTable v2 validation passes.</span><span class="cn">仅在 ShareTable v2 校验通过后生成。</span></p></div><span data-package-status class="pill warn">pending</span></div>
+            <div data-snapshot-empty class="callout warning mb-4"><strong><span class="en">Empty state</span><span class="cn">空状态</span></strong><span><span class="en">No immutable snapshot exists yet. Resolve P02 blockers and prepare the package first.</span><span class="cn">尚无不可变快照。先解决 P02 阻断项并准备报送包。</span></span></div>
+            <div data-snapshot-card class="snapshot-card mb-4" hidden>
+              <div class="field-grid">
+                <div class="field"><label>snapshot_id</label><input value="SNAP-20260901-001" readonly></div>
+                <div class="field"><label>hash</label><input value="sha256:9f7d…e3a1" readonly></div>
+                <div class="field"><label>submission_reference</label><input value="Club-SSI/ANSSI request ID mock-52876" readonly></div>
+                <div class="field"><label>reporting_path</label><input value="fr_portal_product_vulnerability" readonly></div>
+                <div class="field" style="grid-column:1/-1"><label>frozen_payload</label><textarea readonly>A–F identity + vulnerability basis; BB/BC reporting path; AffectedProductVersion rows; country route metadata; limitation notes.</textarea></div>
+              </div>
+            </div>
+            <div data-action-block>
+              <button class="btn primary" type="button" data-generate-snapshot disabled><span class="en">Generate snapshot</span><span class="cn">生成快照</span></button>
+              <p class="guard-reason blocked" data-snapshot-guard>Guard: prepare the reporting package on P02 first.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head"><div><h3 class="panel-title">PortalReceiptEvidence</h3><p class="panel-sub"><span class="en">Attach as audit-only receipt evidence, never acceptance.</span><span class="cn">作为 audit-only 回执证据附加，绝不作为接受证明。</span></p></div><span data-receipt-status class="pill warn">receipt pending</span></div>
+            <div data-receipt-empty class="callout warning mb-4"><strong><span class="en">Waiting state</span><span class="cn">等待状态</span></strong><span><span class="en">Receipt attachment is disabled until a submitted_payload_snapshot exists.</span><span class="cn">在存在 submitted_payload_snapshot 前，回执附加被禁用。</span></span></div>
+            <div data-receipt-card class="snapshot-card mb-4" hidden>
+              <div class="field-grid">
+                <div class="field"><label>authority</label><input value="ANSSI / Club SSI rehearsal" readonly></div>
+                <div class="field"><label>semantic_status</label><input value="received_registered" readonly></div>
+                <div class="field"><label>receipt_reference</label><input value="Votre demande [mock-52876] est enregistrée." readonly></div>
+                <div class="field"><label>receipt_datetime</label><input class="invalid" value="Known gap · local visible time only" readonly></div>
+                <div class="field" style="grid-column:1/-1"><label>limitation_note</label><textarea readonly>Receipt proves registration only; no legal acceptance evidence. Do not render as accepted or legally validated without explicit written acceptance.</textarea></div>
+              </div>
+            </div>
+            <div data-action-block>
+              <button class="btn" type="button" data-attach-receipt disabled><span class="en">Attach receipt</span><span class="cn">附加回执</span></button>
+              <p class="guard-reason blocked" data-receipt-guard>Guard: submitted_payload_snapshot must be generated first.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid two" style="margin-top:16px">
+          <div class="panel">
+            <div class="panel-head"><div><h3 class="panel-title"><span class="en">Persistent compliance risks</span><span class="cn">持续合规风险</span></h3><p class="panel-sub"><span class="en">Success states never hide source limitation or timestamp uncertainty.</span><span class="cn">成功状态绝不隐藏来源限制或时间戳不确定性。</span></p></div></div>
+            <div class="grid">
+              <div class="callout warning"><strong>source limitation</strong><span>Forum signal supports L1 context but not reliable active-exploitation proof.</span></div>
+              <div class="callout warning"><strong>timestamp uncertainty</strong><span>Receipt local time visible as 16:50; UTC conversion evidence remains incomplete.</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><h3 class="panel-title"><span class="en">Evidence timeline</span><span class="cn">证据时间线</span></h3><p class="panel-sub"><span class="en">Generated and attached events append from local state.</span><span class="cn">生成与附加事件从本地状态追加。</span></p></div></div>
+            <div class="timeline">
+              <div class="event"><time>2026-09-01 08:30Z</time><div><h3>VulnerabilitySignal SIG-001 created</h3><p>Threat-intel source, CVSS 9.1; raw attachment stored but hidden from demo_observer.</p></div></div>
+              <div class="event"><time>2026-09-01 09:15Z</time><div><h3>ReportabilityDecision DEC-001 decided</h3><p>L2 met; L1 unknown; L3 not_met. decision_rule_trace stored with confidence high.</p></div></div>
+            </div>
+            <div class="timeline" data-receipt-events></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="journey-footer" aria-label="Scenario 0 navigation">
+        <a class="btn footer-back" href="case-sharetable.html"><span class="en">← P02</span><span class="cn">← P02</span></a>
+        <div class="journey-status">
+          <b><span class="en">P04 · Evidence &amp; Receipt</span><span class="cn">P04 · 证据与回执</span></b>
+          <span><span class="en">Guard: attach PortalReceiptEvidence before dashboard readiness is final.</span><span class="cn">守卫：附加 PortalReceiptEvidence 后准备度才是最终态。</span></span>
+        </div>
+        <a class="btn primary footer-next" href="readiness-dashboard.html" data-requires="receipt"><span class="en">Continue to P05</span><span class="cn">继续到 P05</span> <span class="arrow">→</span></a>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P06 · Demo Observer View — Evidence Console</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="side">
+      <div class="brand"><div class="brand-mark">SRP</div><div><h1><span class="en">ENISA SRP Readiness</span><span class="cn">ENISA SRP 准备度</span></h1><p><span class="en">Evidence Console</span><span class="cn">证据控制台</span></p></div></div>
+      <nav class="nav" aria-label="Screens">
+        <span class="nav-label"><span class="en">Journey</span><span class="cn">旅程</span></span>
+        <a href="index.html"><span class="idx">00</span><span class="nav-title"><span class="en">Launcher</span><span class="cn">入口总览</span></span><span class="nav-meta">Index</span></a>
+        <a href="p00-decision-gate.html"><span class="idx">P00</span><span class="nav-title"><span class="en">Decision Gate</span><span class="cn">决策门</span></span><span class="nav-meta">Gate</span></a>
+        <a href="workbench.html"><span class="idx">P01</span><span class="nav-title"><span class="en">Ops Overview</span><span class="cn">运营总览</span></span><span class="nav-meta">Optional</span></a>
+        <a href="case-sharetable.html"><span class="idx">P02</span><span class="nav-title"><span class="en">Case &amp; Data</span><span class="cn">案例与数据</span></span><span class="nav-meta">Case</span></a>
+        <a href="evidence-receipt.html"><span class="idx">P04</span><span class="nav-title"><span class="en">Evidence</span><span class="cn">证据回执</span></span><span class="nav-meta">Trace</span></a>
+        <a href="readiness-dashboard.html"><span class="idx">P05</span><span class="nav-title"><span class="en">Dashboard</span><span class="cn">仪表盘</span></span><span class="nav-meta">Ready</span></a>
+        <a class="active" href="demo-observer.html"><span class="idx">P06</span><span class="nav-title"><span class="en">Observer View</span><span class="cn">观察者视图</span></span><span class="nav-meta">Safe</span></a>
+        <span class="nav-label"><span class="en">Reference</span><span class="cn">参考</span></span>
+        <a href="design-system.html"><span class="idx">DS</span><span class="nav-title"><span class="en">Design System</span><span class="cn">设计系统</span></span><span class="nav-meta">System</span></a>
+      </nav>
+      <div class="side-footer"><div class="role-chip"><b>demo_observer</b><span><span class="en">Server-side redaction. Show capability, hide detail.</span><span class="cn">服务端脱敏。展示能力，隐藏细节。</span></span></div></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumbs"><span class="en">P06 / demo_observer / regulator-safe exhibit mode</span><span class="cn">P06 / demo_observer / 监管安全展示模式</span></div>
+        <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
+      </header>
+
+      <section class="content" data-screen-label="P06 Observer View">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow"><span class="en">Final external-safe proof view</span><span class="cn">最终外部安全证明视图</span></p>
+            <h2><span class="en">Regulator-safe exhibit mode</span><span class="cn">监管安全展示模式</span></h2>
+            <p><span class="en">P06 proves how internal evidence becomes a demo_observer-safe package: disclose decision rationale, evidence counts, receipt semantics, and readiness state; redact sensitive operational material at the serializer; never overclaim legal acceptance.</span><span class="cn">P06 证明内部证据如何转化为 demo_observer 安全包：披露判断理由、证据数量、回执语义与准备度；在序列化层脱敏敏感材料；绝不声称法律接受。</span></p>
+          </div>
+          <div class="head-actions"><span class="pill accent">role: demo_observer</span><span class="pill ok">server-side redaction</span></div>
+        </div>
+
+        <div class="observer-transform" aria-label="Internal evidence to observer-safe package">
+          <div class="transform-card internal"><span class="transform-step">01</span><b><span class="en">Internal evidence</span><span class="cn">内部证据</span></b><p><span class="en">Customer context, PoC, raw attachments, private notes, contacts, SCM detail.</span><span class="cn">客户上下文、PoC、原始附件、私密备注、联系人、SCM 细节。</span></p></div>
+          <div class="transform-arrow" aria-hidden="true">→</div>
+          <div class="transform-card boundary"><span class="transform-step">02</span><b><span class="en">Redaction boundary</span><span class="cn">脱敏边界</span></b><p><span class="en">Server-side policy converts sensitive fields into counts, rationale, limitations, or redacted markers.</span><span class="cn">服务端策略将敏感字段转换为数量、理由、限制说明或脱敏标记。</span></p></div>
+          <div class="transform-arrow" aria-hidden="true">→</div>
+          <div class="transform-card observer"><span class="transform-step">03</span><b><span class="en">Observer-safe package</span><span class="cn">观察者安全包</span></b><p><span class="en">Regulator-facing exhibit with receipt limitation and explicit cannot-claim semantics.</span><span class="cn">面向监管的展示包，保留回执限制与不可声称语义。</span></p></div>
+        </div>
+
+        <div class="observer-story-grid">
+          <div class="panel">
+            <div class="panel-head"><div><h3 class="panel-title"><span class="en">Presenter path</span><span class="cn">演示讲述路径</span></h3><p class="panel-sub"><span class="en">Click a step to focus the narrative detail.</span><span class="cn">点击步骤聚焦讲述细节。</span></p></div></div>
+            <div class="story-step-list" role="list">
+              <button type="button" data-observer-step="see" class="story-step"><span>01</span><b><span class="en">What observer can see</span><span class="cn">观察者可见</span></b></button>
+              <button type="button" data-observer-step="redacted" class="story-step"><span>02</span><b><span class="en">What is redacted</span><span class="cn">被脱敏内容</span></b></button>
+              <button type="button" data-observer-step="limit" class="story-step"><span>03</span><b><span class="en">What cannot be claimed</span><span class="cn">不可声称内容</span></b></button>
+              <button type="button" data-observer-step="replay" class="story-step"><span>04</span><b><span class="en">Replay internal workflow</span><span class="cn">回放内部工作流</span></b></button>
+              <button type="button" data-observer-step="export" class="story-step"><span>05</span><b><span class="en">Inspect export package</span><span class="cn">检查导出包</span></b></button>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><h3 class="panel-title" data-observer-detail-title>What observer can see</h3><p class="panel-sub"><span class="en">Selected presenter step</span><span class="cn">当前选中演示步骤</span></p></div><span class="pill info" data-observer-detail-pill>disclosed</span></div>
+            <p data-observer-detail-copy style="font-size:var(--fs-sm);color:var(--text-mid);line-height:1.6">Decision rationale, proof-lane outcomes, evidence counts, readiness state, receipt semantics, and explicit known gaps are visible to demo_observer.</p>
+            <div class="callout warning compact" style="margin-top:14px"><strong><span class="en">Try it</span><span class="cn">试一试</span></strong><span><span class="en">Open “What is redacted” to run the decrypt reveal — or click any redacted token below.</span><span class="cn">打开“被脱敏内容”运行解密揭示 —— 或点击下方任意脱敏标记。</span></span></div>
+          </div>
+        </div>
+
+        <div class="compare-grid mb-4">
+          <div class="record-card internal-card">
+            <header><span class="en">Internal view (RBAC-gated)</span><span class="cn">内部视图（RBAC 受限）</span></header>
+            <div class="record-row"><b>customer_name</b><span>Alpine Robotics AG; IberGrid Health Devices</span></div>
+            <div class="record-row"><b>PoC</b><span>curl -H "X-Debug: …" https://mgmt.example.local/parser</span></div>
+            <div class="record-row"><b>raw_attachment</b><span>forum-capture.zip / exploit-repro.mov / lab-notes.md</span></div>
+            <div class="record-row"><b>private_notes</b><span>Customer escalation call scheduled; legal asks for narrower claim language.</span></div>
+            <div class="record-row"><b>internal_contacts</b><span>secops-oncall@netshield.example; legal-cra@netshield.example</span></div>
+            <div class="record-row"><b>SCM detail</b><span>repo/security-edge@a18f7c2 parser hotfix branch</span></div>
+          </div>
+          <div class="redaction-boundary-card" aria-hidden="true"><b><span class="en">server-side redaction</span><span class="cn">服务端脱敏</span></b><span><span class="en">policy transform</span><span class="cn">策略转换</span></span></div>
+          <div class="record-card observer-card">
+            <header><span class="en">External observer view</span><span class="cn">外部观察者视图</span></header>
+            <div class="record-row"><b>customer_name</b><span class="redacted" data-reveal="Alpine Robotics AG; IberGrid Health Devices"></span></div>
+            <div class="record-row"><b>PoC</b><span class="redacted" data-reveal='curl -H "X-Debug: …" https://mgmt.example.local/parser'></span></div>
+            <div class="record-row"><b>raw_attachment</b><span><span class="en">6 evidence items counted; raw files omitted</span><span class="cn">计数 6 个证据项；原始文件省略</span></span></div>
+            <div class="record-row"><b>private_notes</b><span class="redacted" data-reveal="Customer escalation call scheduled; legal asks for narrower claim language."></span></div>
+            <div class="record-row"><b>internal_contacts</b><span class="redacted" data-reveal="secops-oncall@netshield.example; legal-cra@netshield.example"></span></div>
+            <div class="record-row"><b>SCM detail</b><span class="redacted" data-reveal="repo/security-edge@a18f7c2 parser hotfix branch"></span></div>
+          </div>
+        </div>
+
+        <div class="grid two observer-workflow-grid">
+          <div class="panel">
+            <div class="panel-head"><div><h3 class="panel-title"><span class="en">Replay internal workflow from P00</span><span class="cn">从 P00 回放内部工作流</span></h3><p class="panel-sub"><span class="en">Regulator-facing summary, safe by design.</span><span class="cn">面向监管的摘要，默认安全。</span></p></div><span data-outcome-pill class="pill ok">Reportable</span></div>
+            <div class="timeline">
+              <div class="event"><time>01</time><div><h3><span class="en">Signal Intake</span><span class="cn">信号录入</span></h3><p><span class="en">Threat-intel signal for CVE-2026-12345, severity critical, structured as VulnerabilitySignal.</span><span class="cn">CVE-2026-12345 威胁情报信号，critical 严重度，结构化为 VulnerabilitySignal。</span></p></div></div>
+              <div class="event"><time>02</time><div><h3><span class="en">Reportability Decision</span><span class="cn">报送触发判断</span></h3><p><span class="en">Product and EEA relevance established; L2 met; decision_rule_trace produces a reportable outcome.</span><span class="cn">产品与 EEA 相关性成立；L2 满足；decision_rule_trace 生成 reportable。</span></p></div></div>
+              <div class="event"><time>03</time><div><h3><span class="en">Case &amp; ShareTable v2</span><span class="cn">Case 与 ShareTable v2</span></h3><p><span class="en">A formal Case exists only after reviewer endorsement; affected products aggregate by country and version.</span><span class="cn">正式 Case 仅在 reviewer endorsement 后存在；受影响产品按国家和版本聚合。</span></p></div></div>
+              <div class="event"><time>04</time><div><h3><span class="en">Evidence Trace</span><span class="cn">证据链</span></h3><p><span class="en">Evidence count: 6 referenced items. Raw attachments and PoC are omitted from the observer response.</span><span class="cn">证据数量：6 个引用项。原始附件与 PoC 从观察者响应中省略。</span></p></div></div>
+              <div class="event"><time>05</time><div><h3><span class="en">Receipt Semantics</span><span class="cn">回执语义</span></h3><p><span class="en">Portal status is received_registered only; legal acceptance is not claimed.</span><span class="cn">Portal 状态仅为 received_registered；不声称法律接受。</span></p></div></div>
+            </div>
+          </div>
+
+          <div class="grid observer-export-stack">
+            <div class="panel">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Export package preview</span><span class="cn">导出包预览</span></h3><p class="panel-sub"><span class="en">Click included / excluded rows to inspect disclosure policy.</span><span class="cn">点击包含/排除行检查披露策略。</span></p></div><span data-package-status class="pill warn">pending</span></div>
+              <div class="export-row-list">
+                <button type="button" class="export-row included" data-export-item="included-decision"><b><span class="en">Included</span><span class="cn">包含</span></b><span>decision_rationale, proof_lane_states, evidence_count</span></button>
+                <button type="button" class="export-row included" data-export-item="included-readiness"><b><span class="en">Included</span><span class="cn">包含</span></b><span>affected_product_aggregation, readiness_state, receipt_semantics</span></button>
+                <button type="button" class="export-row excluded" data-export-item="excluded-sensitive"><b><span class="en">Excluded</span><span class="cn">排除</span></b><span>customer names, raw attachments, PoC, private notes</span></button>
+                <button type="button" class="export-row excluded" data-export-item="excluded-internal"><b><span class="en">Excluded</span><span class="cn">排除</span></b><span>internal contacts, SCM detail, raw exploit material</span></button>
+              </div>
+              <div class="export-detail"><b data-export-detail-title>Included evidence summary</b><span data-export-detail-copy>Observer receives rationale, proof-lane states, evidence counts, and regulator-safe excerpts without raw files.</span></div>
+              <div class="callout danger compact" style="margin-top:12px"><strong><span class="en">Receipt limitation</span><span class="cn">回执限制</span></strong><span><span class="en">received_registered is exported as a limitation-bearing evidence event, not legal acceptance.</span><span class="cn">received_registered 作为带限制的证据事件导出，不是法律接受。</span></span></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Visible to observer</span><span class="cn">观察者可见</span></h3></div></div>
+              <div class="grid observer-visible-grid">
+                <div class="callout info"><strong><span class="en">Decision rationale</span><span class="cn">判断理由</span></strong><span><span class="en">L2 met because RCE weakens confidentiality / integrity; L1 remains unknown.</span><span class="cn">L2 满足，因为 RCE 削弱机密性/完整性；L1 仍未知。</span></span></div>
+                <div class="callout info"><strong><span class="en">Evidence count</span><span class="cn">证据数量</span></strong><span><span class="en">6 referenced items, 2 regulator-safe excerpts, raw material hidden.</span><span class="cn">6 个引用项、2 个监管安全摘录，原始材料隐藏。</span></span></div>
+                <div class="callout warning"><strong><span class="en">Known gaps</span><span class="cn">已知缺口</span></strong><span><span class="en">UTC receipt timestamp and IT authority path metadata are explicit.</span><span class="cn">UTC 回执时间戳与 IT 机构路径元数据缺口被明确展示。</span></span></div>
+                <div class="callout danger"><strong><span class="en">Receipt limitation</span><span class="cn">回执限制</span></strong><span><span class="en">received_registered is not legal acceptance.</span><span class="cn">received_registered 不是法律接受。</span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="journey-footer" aria-label="Scenario 0 navigation">
+        <a class="btn footer-back" href="readiness-dashboard.html"><span class="en">← P05</span><span class="cn">← P05</span></a>
+        <div class="journey-status">
+          <b><span class="en">P06 · Regulator-safe exhibit</span><span class="cn">P06 · 监管安全展示</span></b>
+          <span><span class="en">Final external-safe proof view; the internal workflow can be replayed from P00.</span><span class="cn">最终外部安全证明视图；可从 P00 回放内部工作流。</span></span>
+        </div>
+        <a class="btn primary footer-next" href="p00-decision-gate.html"><span class="en">Replay from P00</span><span class="cn">从 P00 回放</span> <span class="arrow">→</span></a>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

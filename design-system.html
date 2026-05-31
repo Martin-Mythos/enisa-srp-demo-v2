@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evidence Console · Design System</title>
+  <link rel="stylesheet" href="css/app.css">
+  <style>
+    .ds-shell { position: relative; z-index: 1; display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+    .ds-side { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: var(--s5) var(--s4); border-right: 1px solid var(--line-soft); background: linear-gradient(to bottom, var(--base), var(--void)); display: flex; flex-direction: column; gap: var(--s4); }
+    .ds-side nav { display: flex; flex-direction: column; gap: 1px; }
+    .ds-side nav a { padding: 7px var(--s3); border-radius: var(--r-sm); font-size: var(--fs-sm); color: var(--text-low); border-left: 2px solid transparent; transition: all var(--t-fast); }
+    .ds-side nav a:hover { color: var(--text); background: var(--surface-1); }
+    .ds-side nav a.current { color: var(--accent-bright); border-left-color: var(--accent); background: var(--accent-tint); }
+    .ds-main { min-width: 0; }
+    .ds-content { max-width: 1100px; margin: 0 auto; padding: var(--s7) var(--s6) var(--s9); }
+    .ds-sec { padding-top: var(--s8); margin-top: var(--s4); scroll-margin-top: 24px; }
+    .ds-sec:first-of-type { padding-top: var(--s4); }
+    .ds-sec > h2 { font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; margin-bottom: var(--s2); }
+    .ds-sec > .lede { color: var(--text-mid); font-size: var(--fs-md); max-width: 70ch; line-height: 1.6; margin-bottom: var(--s5); }
+    .ds-sub { font-family: var(--mono); font-size: var(--fs-micro); letter-spacing: var(--track-wide); text-transform: uppercase; color: var(--text-low); margin: var(--s6) 0 var(--s3); display: flex; align-items: center; gap: var(--s3); }
+    .ds-sub::after { content: ''; flex: 1; height: 1px; background: var(--line-soft); }
+    .ds-grid { display: grid; gap: var(--s3); }
+    .ds-grid.c2 { grid-template-columns: 1fr 1fr; } .ds-grid.c3 { grid-template-columns: repeat(3,1fr); } .ds-grid.c4 { grid-template-columns: repeat(4,1fr); }
+
+    .principle { padding: var(--s4); border: 1px solid var(--line-soft); border-radius: var(--r-lg); background: var(--surface-1); position: relative; }
+    .principle .pn { font-family: var(--mono); font-size: var(--fs-micro); color: var(--accent-bright); letter-spacing: 0.08em; }
+    .principle h3 { font-size: var(--fs-h3); margin: 6px 0; }
+    .principle p { font-size: var(--fs-meta); color: var(--text-low); line-height: 1.55; }
+
+    .swatch { border: 1px solid var(--line-soft); border-radius: var(--r-md); overflow: hidden; background: var(--surface-1); }
+    .swatch .chip { height: 64px; }
+    .swatch .meta { padding: 9px var(--s3); }
+    .swatch .meta b { font-size: var(--fs-sm); display: block; }
+    .swatch .meta code { font-family: var(--mono); font-size: 10px; color: var(--text-faint); }
+
+    .type-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s4); padding: var(--s3) 0; border-bottom: 1px solid var(--line-soft); }
+    .type-row .spec { font-family: var(--mono); font-size: var(--fs-micro); color: var(--text-faint); white-space: nowrap; }
+
+    .scale-bar { display: flex; align-items: center; gap: var(--s3); padding: 6px 0; }
+    .scale-bar .box { background: var(--accent-tint-2); border: 1px solid var(--accent-line); border-radius: var(--r-xs); height: 18px; }
+    .scale-bar code { font-family: var(--mono); font-size: var(--fs-meta); color: var(--text-mid); }
+
+    .radius-demo { display: grid; place-items: center; height: 72px; background: var(--accent-tint); border: 1px solid var(--accent-line); }
+    .elev-demo { height: 72px; border-radius: var(--r-md); background: var(--surface-1); border: 1px solid var(--line-soft); }
+
+    .demo-stage { padding: var(--s5); border: 1px dashed var(--line); border-radius: var(--r-lg); background: var(--inset); display: flex; flex-wrap: wrap; gap: var(--s4); align-items: center; }
+    .motion-card { padding: var(--s4); border: 1px solid var(--line-soft); border-radius: var(--r-md); background: var(--surface-1); }
+    .motion-card h4 { font-size: var(--fs-sm); margin-bottom: 4px; }
+    .motion-card p { font-size: var(--fs-meta); color: var(--text-low); line-height: 1.5; margin-bottom: var(--s3); }
+
+    @media (max-width: 1099px) {
+      .ds-shell { grid-template-columns: 1fr; }
+      .ds-side { display: none; }
+      .ds-content { padding: var(--s6) var(--s5) var(--s8); }
+      .ds-grid.c4 { grid-template-columns: repeat(2,1fr); }
+      .ds-grid.c3 { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 639px) {
+      .ds-content { padding: var(--s5) var(--s4) var(--s7); }
+      .ds-grid.c2, .ds-grid.c3, .ds-grid.c4 { grid-template-columns: 1fr; }
+      .type-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ds-shell">
+    <aside class="ds-side">
+      <div class="brand"><div class="brand-mark">SRP</div><div><h1 style="white-space:nowrap"><span class="en">Evidence Console</span><span class="cn">证据控制台</span></h1><p><span class="en">Design System</span><span class="cn">设计系统</span></p></div></div>
+      <nav aria-label="Sections">
+        <a href="#principles" class="current"><span class="en">1 · Principles</span><span class="cn">1 · 设计原则</span></a>
+        <a href="#language"><span class="en">2 · Visual language</span><span class="cn">2 · 视觉语言</span></a>
+        <a href="#color"><span class="en">3 · Color</span><span class="cn">3 · 色彩</span></a>
+        <a href="#type"><span class="en">3 · Typography</span><span class="cn">3 · 字体</span></a>
+        <a href="#space"><span class="en">3 · Space · radius · elevation</span><span class="cn">3 · 间距 · 圆角 · 高度</span></a>
+        <a href="#components"><span class="en">4 · Components</span><span class="cn">4 · 组件</span></a>
+        <a href="#motion"><span class="en">5 · Motion</span><span class="cn">5 · 动效</span></a>
+      </nav>
+      <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+        <a class="btn" href="index.html"><span class="en">← Launcher</span><span class="cn">← 返回入口</span></a>
+        <a class="btn primary" href="p00-decision-gate.html"><span class="en">See it live →</span><span class="cn">查看实际页面 →</span></a>
+      </div>
+    </aside>
+
+    <main class="ds-main">
+      <header class="topbar">
+        <div class="crumbs"><span class="en">Design System / Evidence Console v1</span><span class="cn">设计系统 / Evidence Console v1</span></div>
+        <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
+      </header>
+
+      <div class="ds-content">
+        <div style="margin-bottom:var(--s6)">
+          <p class="eyebrow"><span class="en">ENISA SRP Readiness · visual system</span><span class="cn">ENISA SRP 准备度 · 视觉系统</span></p>
+          <h1 style="font-size:clamp(30px,4.5vw,48px);letter-spacing:-0.03em;line-height:1.06;margin:var(--s3) 0;max-width:18ch"><span class="en">Evidence Console — an operational language for evidence-based compliance.</span><span class="cn">Evidence Console —— 面向基于证据的合规的操作型语言。</span></h1>
+          <p style="color:var(--text-mid);font-size:var(--fs-md);max-width:68ch;line-height:1.6"><span class="en">A dark-first console built for regulators and CSIRTs: sharp, dense-but-breathable, and quietly high-tech. It treats every status, guard, and gap as a first-class signal — never a decoration.</span><span class="cn">面向监管者与 CSIRT 的暗色优先控制台：锐利、密集而透气、内敛的高科技感。它把每一个状态、守卫与缺口都当作一等信号 —— 绝非装饰。</span></p>
+        </div>
+
+        <!-- 1 · PRINCIPLES -->
+        <section class="ds-sec" id="principles">
+          <h2><span class="en">1 · Design principles</span><span class="cn">1 · 设计原则</span></h2>
+          <p class="lede"><span class="en">Five rules decide every trade-off in this system.</span><span class="cn">五条原则决定本系统的每一次取舍。</span></p>
+          <div class="ds-grid c2">
+            <div class="principle"><span class="pn">01</span><h3><span class="en">Evidence over assertion</span><span class="cn">证据先于断言</span></h3><p><span class="en">The interface shows why, not just what. Rule traces, proof lanes, and audit events are primary UI, not tooltips.</span><span class="cn">界面展示“为什么”，而不仅是“是什么”。规则追踪、proof lane 与审计事件是主要 UI，不是提示气泡。</span></p></div>
+            <div class="principle"><span class="pn">02</span><h3><span class="en">Guards are visible</span><span class="cn">守卫可见</span></h3><p><span class="en">Blocked is a designed state. Every disabled action states its reason and the exact condition that clears it.</span><span class="cn">“阻断”是被设计的状态。每个禁用操作都说明其原因与解除它的确切条件。</span></p></div>
+            <div class="principle"><span class="pn">03</span><h3><span class="en">Honest gaps beat vanity metrics</span><span class="cn">诚实缺口胜过虚荣指标</span></h3><p><span class="en">Known gaps are counted and coloured, never smoothed into a green 100%. Honesty reads as credibility to regulators.</span><span class="cn">已知缺口被计数与着色，绝不被抹平成绿色 100%。对监管者而言，诚实即可信。</span></p></div>
+            <div class="principle"><span class="pn">04</span><h3><span class="en">Redaction is a feature</span><span class="cn">脱敏是一种能力</span></h3><p><span class="en">The boundary between internal and observer-safe is shown explicitly — a distinct hue, a decrypt motion, a server-side label.</span><span class="cn">内部与观察者安全之间的边界被显式呈现 —— 独立色相、解密动效、服务端标签。</span></p></div>
+            <div class="principle"><span class="pn">05</span><h3><span class="en">Dense, but breathable</span><span class="cn">密集而透气</span></h3><p><span class="en">Operational density on an 8px grid. Mono carries data and structure; the sans carries voice. Nothing decorative earns space.</span><span class="cn">8px 栅格上的操作型密度。等宽承载数据与结构；无衬线承载语气。装饰不占空间。</span></p></div>
+          </div>
+        </section>
+
+        <!-- 2 · VISUAL LANGUAGE -->
+        <section class="ds-sec" id="language">
+          <h2><span class="en">2 · Visual language board</span><span class="cn">2 · 视觉语言板</span></h2>
+          <p class="lede"><span class="en">Signature devices that make the console feel like one product, not a template.</span><span class="cn">让控制台感觉像一个产品而非模板的标志性手法。</span></p>
+          <div class="ds-grid c2">
+            <div class="panel bracketed"><div class="panel-head"><div><h3 class="panel-title"><span class="en">Corner-bracket reticles</span><span class="cn">角括号准星</span></h3><p class="panel-sub"><span class="en">Featured panels carry targeting brackets — a tactical-display cue used sparingly.</span><span class="cn">重点面板带准星括号 —— 节制使用的战术显示语汇。</span></p></div></div><p style="font-size:var(--fs-meta);color:var(--text-low)"><span class="en">Applied to hero signals and the Readiness Statement only.</span><span class="cn">仅用于关键信号与准备度声明。</span></p></div>
+            <div class="panel"><div class="panel-head"><div><h3 class="panel-title"><span class="en">Luminous top hairline</span><span class="cn">顶部发光细线</span></h3><p class="panel-sub"><span class="en">Every panel has a cyan hairline fading from its top-left — light from a single console source.</span><span class="cn">每个面板顶部左侧有一条渐隐的青色细线 —— 来自单一控制台光源。</span></p></div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill accent">signal</span><span class="pill ok">reportable</span><span class="pill warn">testing</span><span class="pill danger">gap</span><span class="pill redact">redacted</span></div></div>
+          </div>
+          <div class="demo-stage" style="margin-top:var(--s3)">
+            <span style="font-family:var(--mono);font-size:var(--fs-meta);color:var(--text-low)"><span class="en">Behind everything: a faint 40px tactical grid + a single cyan vignette at top-right. Look at the page background.</span><span class="cn">一切之后：极淡的 40px 战术栅格 + 右上角单一青色光晕。请观察页面背景。</span></span>
+          </div>
+        </section>
+
+        <!-- 3 · COLOR -->
+        <section class="ds-sec" id="color">
+          <h2><span class="en">3 · Token system — Color</span><span class="cn">3 · Token 系统 —— 色彩</span></h2>
+          <p class="lede"><span class="en">Deep blue-graphite surfaces, one electric-cyan signal, and a semantic set sharing lightness/chroma across hues.</span><span class="cn">深蓝石墨表面、一种电青信号色，以及在不同色相间共享明度/彩度的语义色集。</span></p>
+          <div class="ds-sub"><span class="en">Surfaces</span><span class="cn">表面</span></div>
+          <div class="ds-grid c4">
+            <div class="swatch"><div class="chip" style="background:var(--void)"></div><div class="meta"><b>void</b><code>page base</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--surface-1)"></div><div class="meta"><b>surface-1</b><code>panels</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--surface-2)"></div><div class="meta"><b>surface-2</b><code>raised / hover</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--inset)"></div><div class="meta"><b>inset</b><code>input wells</code></div></div>
+          </div>
+          <div class="ds-sub"><span class="en">Signal &amp; semantic</span><span class="cn">信号与语义</span></div>
+          <div class="ds-grid c4">
+            <div class="swatch"><div class="chip" style="background:var(--accent)"></div><div class="meta"><b>accent · cyan</b><code>signal · primary · selected</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--ok)"></div><div class="meta"><b>ok</b><code>reportable · ready · pass</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--warn)"></div><div class="meta"><b>warn</b><code>pending · testing · gap</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--danger)"></div><div class="meta"><b>danger</b><code>blocked · high risk</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--info)"></div><div class="meta"><b>info</b><code>not_reportable · neutral</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--redact)"></div><div class="meta"><b>redact</b><code>redaction boundary</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--text-hi)"></div><div class="meta"><b>text-hi</b><code>headings</code></div></div>
+            <div class="swatch"><div class="chip" style="background:var(--text-mid)"></div><div class="meta"><b>text-mid</b><code>body</code></div></div>
+          </div>
+        </section>
+
+        <!-- 3 · TYPE -->
+        <section class="ds-sec" id="type">
+          <h2><span class="en">Typography</span><span class="cn">字体</span></h2>
+          <p class="lede"><span class="en">Space Grotesk carries voice and headings; IBM Plex Mono carries every ID, code, timestamp, and field key.</span><span class="cn">Space Grotesk 承载语气与标题；IBM Plex Mono 承载所有 ID、代码、时间戳与字段键。</span></p>
+          <div class="panel">
+            <div class="type-row"><span style="font-size:42px;font-weight:600;letter-spacing:-0.03em">Reportability decision</span><span class="spec">Grotesk 600 · clamp 28–42</span></div>
+            <div class="type-row"><span style="font-size:24px;font-weight:600">Operational readiness</span><span class="spec">Grotesk 600 · h2</span></div>
+            <div class="type-row"><span style="font-size:16px;font-weight:600">Panel title</span><span class="spec">Grotesk 600 · 16</span></div>
+            <div class="type-row"><span style="font-size:14px">Body — evidence over assertion; guards stay visible.</span><span class="spec">Grotesk 400 · 14</span></div>
+            <div class="type-row"><span class="mono" style="font-size:13px;color:var(--accent-bright)">CRA-FR-20260901-01 · 2026-09-01T09:15:00Z</span><span class="spec">Plex Mono 500 · 13 data</span></div>
+            <div class="type-row"><span class="mono" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-low)">reviewer_endorsement</span><span class="spec">Plex Mono · 11 · tracked label</span></div>
+          </div>
+        </section>
+
+        <!-- 3 · SPACE -->
+        <section class="ds-sec" id="space">
+          <h2><span class="en">Space · radius · elevation · motion tokens</span><span class="cn">间距 · 圆角 · 高度 · 动效 token</span></h2>
+          <div class="ds-sub"><span class="en">Spacing — 8px base grid</span><span class="cn">间距 —— 8px 基础栅格</span></div>
+          <div class="panel">
+            <div class="scale-bar"><span class="box" style="width:4px"></span><code>--s1 · 4</code></div>
+            <div class="scale-bar"><span class="box" style="width:8px"></span><code>--s2 · 8</code></div>
+            <div class="scale-bar"><span class="box" style="width:16px"></span><code>--s4 · 16</code></div>
+            <div class="scale-bar"><span class="box" style="width:24px"></span><code>--s6 · 24</code></div>
+            <div class="scale-bar"><span class="box" style="width:32px"></span><code>--s7 · 32</code></div>
+            <div class="scale-bar"><span class="box" style="width:48px"></span><code>--s9 · 48</code></div>
+          </div>
+          <div class="ds-grid c2" style="margin-top:var(--s4)">
+            <div>
+              <div class="ds-sub"><span class="en">Radius — sharp</span><span class="cn">圆角 —— 锐利</span></div>
+              <div class="ds-grid c3">
+                <div><div class="radius-demo" style="border-radius:3px"></div><code class="mono" style="font-size:10px;color:var(--text-faint)">xs · 3</code></div>
+                <div><div class="radius-demo" style="border-radius:8px"></div><code class="mono" style="font-size:10px;color:var(--text-faint)">md · 8</code></div>
+                <div><div class="radius-demo" style="border-radius:11px"></div><code class="mono" style="font-size:10px;color:var(--text-faint)">lg · 11</code></div>
+              </div>
+            </div>
+            <div>
+              <div class="ds-sub"><span class="en">Elevation</span><span class="cn">高度</span></div>
+              <div class="ds-grid c3">
+                <div><div class="elev-demo" style="box-shadow:var(--e1)"></div><code class="mono" style="font-size:10px;color:var(--text-faint)">e1</code></div>
+                <div><div class="elev-demo" style="box-shadow:var(--e2)"></div><code class="mono" style="font-size:10px;color:var(--text-faint)">e2 · panel</code></div>
+                <div><div class="elev-demo" style="box-shadow:var(--glow-accent)"></div><code class="mono" style="font-size:10px;color:var(--text-faint)">glow · selected</code></div>
+              </div>
+            </div>
+          </div>
+          <div class="ds-sub"><span class="en">Motion tokens</span><span class="cn">动效 token</span></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>token</th><th>value</th><th><span class="en">use</span><span class="cn">用途</span></th></tr></thead>
+            <tbody>
+              <tr><td class="mono">--t-fast</td><td class="mono">120ms</td><td><span class="en">hover, focus, tabs</span><span class="cn">悬停、聚焦、标签</span></td></tr>
+              <tr><td class="mono">--t</td><td class="mono">180ms</td><td><span class="en">selection, fades</span><span class="cn">选中、淡入</span></td></tr>
+              <tr><td class="mono">--t-slow</td><td class="mono">260ms</td><td><span class="en">drawers, decrypt sweep, bar grow</span><span class="cn">抽屉、解密扫描、条形增长</span></td></tr>
+              <tr><td class="mono">--ease</td><td class="mono">cubic-bezier(.2,.6,.2,1)</td><td><span class="en">standard</span><span class="cn">标准</span></td></tr>
+              <tr><td class="mono">--ease-out</td><td class="mono">cubic-bezier(.16,1,.3,1)</td><td><span class="en">entrances</span><span class="cn">入场</span></td></tr>
+            </tbody>
+          </table></div>
+        </section>
+
+        <!-- 4 · COMPONENTS -->
+        <section class="ds-sec" id="components">
+          <h2><span class="en">4 · Component system</span><span class="cn">4 · 组件系统</span></h2>
+          <p class="lede"><span class="en">Every component below is the exact class used in the live screens.</span><span class="cn">以下每个组件都是实际页面所用的同一套类。</span></p>
+
+          <div class="ds-sub"><span class="en">Status badges</span><span class="cn">状态徽章</span></div>
+          <div class="demo-stage"><span class="pill ok">reportable</span><span class="pill info">not_reportable</span><span class="pill warn">need_more_evidence</span><span class="pill danger">blocked</span><span class="pill accent">signal</span><span class="pill redact">redacted</span><span class="pill">neutral</span></div>
+
+          <div class="ds-sub"><span class="en">Buttons &amp; segmented states</span><span class="cn">按钮与分段状态</span></div>
+          <div class="demo-stage"><button class="btn primary">Primary</button><button class="btn">Default</button><button class="btn ghost">Ghost</button><button class="btn" disabled>Disabled</button><span class="state-btn active">reportable</span><span class="state-btn">not_reportable</span></div>
+
+          <div class="ds-sub"><span class="en">Guard panels</span><span class="cn">守卫面板</span></div>
+          <div class="ds-grid c2">
+            <div class="callout danger"><strong><span class="en">Case creation blocked</span><span class="cn">Case 创建已阻断</span></strong><span><span class="en">Only an endorsed reportable decision can create a formal Case.</span><span class="cn">只有已背书的 reportable 判断才能创建正式 Case。</span></span></div>
+            <div class="callout warning"><strong>SLA honesty</strong><span><span class="en">T0 stays anchored to decided_at; Case creation never resets the clock.</span><span class="cn">T0 锚定 decided_at；Case 创建不重置时钟。</span></span></div>
+          </div>
+          <div class="demo-stage" style="margin-top:var(--s3)"><p class="guard-reason blocked">Guard: reviewer_endorsement is required.</p><p class="guard-reason cleared">Cleared: reviewer_endorsement recorded.</p></div>
+
+          <div class="ds-sub"><span class="en">Evidence card · proof lane</span><span class="cn">证据卡 · proof lane</span></div>
+          <div class="proof-lane lane-met"><div class="lane-code">L2</div><div><h3>severe_incident_security_impact</h3><p><span class="en">RCE weakens confidentiality and integrity. Evidence refs: TI-001, LAB-042.</span><span class="cn">RCE 削弱机密性与完整性。证据引用：TI-001、LAB-042。</span></p></div><div class="lane-actions"><span class="pill ok">met</span><button class="btn">Evidence</button></div></div>
+
+          <div class="ds-sub"><span class="en">Dashboard metrics</span><span class="cn">仪表盘指标</span></div>
+          <div class="ds-grid c3">
+            <div class="metric"><p class="label">Decision coverage</p><p class="value">78%</p><p class="note">reviewer + rule-trace</p></div>
+            <div class="metric"><p class="label">Evidence sufficiency</p><p class="value">61%</p><p class="note">receipt + timestamp honesty</p></div>
+            <div class="metric"><p class="label">SLA risk</p><p class="value"><span class="pill danger">high</span></p><p class="note">T0 honesty retained</p></div>
+          </div>
+          <div class="panel" style="margin-top:var(--s3)"><div class="chart-bars"><div class="bar-row"><span class="bar-label">reportable</span><div class="bar-track"><div class="bar-fill" style="--w:58%"></div></div><span class="bar-value">58%</span><span class="bar-count">58</span></div><div class="bar-row"><span class="bar-label">not_reportable</span><div class="bar-track"><div class="bar-fill info" style="--w:22%"></div></div><span class="bar-value">22%</span><span class="bar-count">22</span></div></div></div>
+
+          <div class="ds-sub"><span class="en">Tables</span><span class="cn">表格</span></div>
+          <div class="table-wrap"><table><thead><tr><th>market</th><th>product</th><th>versions</th><th>devices</th><th>path</th></tr></thead><tbody>
+            <tr><td>FR</td><td>NetShield Edge</td><td class="mono">2.4.1–2.4.3</td><td class="mono">52</td><td><span class="pill ok">portal rehearsal</span></td></tr>
+            <tr><td>IT</td><td>Gateway Relay</td><td class="mono">1.9.0</td><td class="mono">31</td><td><span class="pill danger">metadata gap</span></td></tr>
+          </tbody></table></div>
+
+          <div class="ds-sub"><span class="en">Timeline</span><span class="cn">时间线</span></div>
+          <div class="panel"><div class="timeline"><div class="event"><time>09:15Z</time><div><h3>ReportabilityDecision DEC-001 decided</h3><p>L2 met; L1 unknown; L3 not_met.</p></div></div><div class="event"><time>16:50 local</time><div><h3>PortalReceiptEvidence — received_registered</h3><p>Registration only, not acceptance.</p></div></div></div></div>
+
+          <div class="ds-sub"><span class="en">Redaction comparison</span><span class="cn">脱敏对比</span></div>
+          <div class="compare-grid">
+            <div class="record-card internal-card"><header><span class="en">Internal</span><span class="cn">内部</span></header><div class="record-row"><b>customer_name</b><span>Alpine Robotics AG</span></div></div>
+            <div class="redaction-boundary-card" aria-hidden="true"><b><span class="en">redaction</span><span class="cn">脱敏</span></b><span>policy</span></div>
+            <div class="record-card observer-card"><header><span class="en">Observer</span><span class="cn">观察者</span></header><div class="record-row"><b>customer_name</b><span class="redacted" data-reveal="Alpine Robotics AG"></span></div></div>
+          </div>
+          <p style="font-size:var(--fs-meta);color:var(--text-faint);margin-top:8px;font-family:var(--mono)"><span class="en">↑ click the redacted token to run the decrypt reveal</span><span class="cn">↑ 点击脱敏标记运行解密揭示</span></p>
+        </section>
+
+        <!-- 5 · MOTION -->
+        <section class="ds-sec" id="motion">
+          <h2><span class="en">5 · Motion rules</span><span class="cn">5 · 动效规则</span></h2>
+          <p class="lede"><span class="en">Restrained and purposeful — motion confirms a state change, never entertains. All live below.</span><span class="cn">克制且有目的 —— 动效确认状态变化，绝不娱乐。以下均为实时演示。</span></p>
+          <div class="ds-grid c2">
+            <div class="motion-card"><h4><span class="en">Hover</span><span class="cn">悬停</span></h4><p><span class="en">120ms lift: border brightens, surface raises, accent glow. No movement larger than 3px.</span><span class="cn">120ms 提升：边框变亮、表面抬升、青色辉光。位移不超过 3px。</span></p><div class="proof-lane lane-unknown"><div class="lane-code">L1</div><div><h3><span class="en">hover me</span><span class="cn">悬停试试</span></h3></div><div class="lane-actions"><span class="pill warn">unknown</span></div></div></div>
+            <div class="motion-card"><h4><span class="en">Selected state</span><span class="cn">选中状态</span></h4><p><span class="en">180ms: an accent edge-bar grows and a glow ring appears. Selection is unmistakable.</span><span class="cn">180ms：青色边条生长，辉光环出现。选中状态明确无误。</span></p><div class="demo-stage" style="padding:var(--s3)"><span class="state-btn">option</span><span class="state-btn active">selected</span></div></div>
+            <div class="motion-card"><h4><span class="en">Guarded / blocked</span><span class="cn">守卫 / 阻断</span></h4><p><span class="en">A single 360ms shake + red glow pulse when a guard rejects an action.</span><span class="cn">守卫拒绝操作时触发一次 360ms 抖动 + 红色辉光脉冲。</span></p><button class="btn" id="dsShake"><span class="en">Trigger guard</span><span class="cn">触发守卫</span></button></div>
+            <div class="motion-card"><h4><span class="en">Redaction reveal</span><span class="cn">脱敏揭示</span></h4><p><span class="en">A 260ms cyan scan sweep decrypts a token from hatched cipher to plain text.</span><span class="cn">260ms 青色扫描将标记从斜纹密文解密为明文。</span></p><div class="demo-stage" style="padding:var(--s3)"><span class="redacted" data-reveal="received_registered ≠ legal acceptance"></span></div></div>
+            <div class="motion-card" style="grid-column:1/-1"><h4><span class="en">Dashboard drilldown</span><span class="cn">仪表盘下钻</span></h4><p><span class="en">Selecting a metric cross-fades the gap list (180ms) and re-grows the bars (260ms). Try the two cards.</span><span class="cn">选择指标会交叉淡入缺口列表（180ms）并重新生长条形（260ms）。点击两张卡片试试。</span></p>
+              <div class="ds-grid c2" style="margin-top:var(--s2)">
+                <button class="metric drill-card" type="button" data-ds-drill="a"><p class="label">Evidence gaps</p><p class="value">61%</p></button>
+                <button class="metric drill-card active" type="button" data-ds-drill="b"><p class="label">SLA risk</p><p class="value"><span class="pill danger">high</span></p></button>
+              </div>
+              <div class="drill-list" id="dsDrill" style="margin-top:var(--s3)"><div class="callout danger compact"><strong>T0 honesty retained</strong><span>24h / 72h / Final measured from awareness, not Case creation.</span></div></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="js/app.js"></script>
+  <script>
+    // section nav highlight
+    (function () {
+      var links = document.querySelectorAll('.ds-side nav a');
+      var secs = [].map.call(document.querySelectorAll('.ds-sec'), function (s) { return s; });
+      function onScroll() {
+        var y = window.scrollY + 120, cur = secs[0];
+        secs.forEach(function (s) { if (s.offsetTop <= y) cur = s; });
+        links.forEach(function (a) { a.classList.toggle('current', a.getAttribute('href') === '#' + cur.id); });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      links.forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); var el = document.querySelector(a.getAttribute('href')); if (el) window.scrollTo({ top: el.offsetTop - 24, behavior: 'smooth' }); }); });
+    })();
+    // guard shake demo
+    document.getElementById('dsShake').addEventListener('click', function () {
+      this.classList.remove('guard-shake', 'guard-flash'); void this.offsetWidth; this.classList.add('guard-shake', 'guard-flash');
+      if (window.SRP) window.SRP.toast('Guard: reviewer_endorsement is required.', 'danger');
+    });
+    // drilldown demo
+    var dsDrill = document.getElementById('dsDrill');
+    var DS = {
+      a: '<div class="callout warning compact"><strong>L1 reliability</strong><span>Source limitation remains visible in the decision audit.</span></div><div class="callout warning compact"><strong>UTC receipt timestamp</strong><span>Local portal time does not prove UTC receipt time.</span></div>',
+      b: '<div class="callout danger compact"><strong>T0 honesty retained</strong><span>24h / 72h / Final measured from awareness, not Case creation.</span></div>'
+    };
+    document.querySelectorAll('[data-ds-drill]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('[data-ds-drill]').forEach(function (x) { x.classList.toggle('active', x === b); });
+        dsDrill.classList.remove('drill-list'); void dsDrill.offsetWidth; dsDrill.classList.add('drill-list');
+        dsDrill.innerHTML = DS[b.getAttribute('data-ds-drill')];
+      });
+    });
+  </script>
+</body>
+</html>

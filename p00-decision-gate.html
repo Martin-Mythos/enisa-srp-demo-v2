@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P00 · Reportability Decision Gate — Evidence Console</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="side">
+      <div class="brand"><div class="brand-mark">SRP</div><div><h1><span class="en">ENISA SRP Readiness</span><span class="cn">ENISA SRP 准备度</span></h1><p><span class="en">Evidence Console</span><span class="cn">证据控制台</span></p></div></div>
+      <nav class="nav" aria-label="Screens">
+        <span class="nav-label"><span class="en">Journey</span><span class="cn">旅程</span></span>
+        <a href="index.html"><span class="idx">00</span><span class="nav-title"><span class="en">Launcher</span><span class="cn">入口总览</span></span><span class="nav-meta">Index</span></a>
+        <a class="active" href="p00-decision-gate.html"><span class="idx">P00</span><span class="nav-title"><span class="en">Decision Gate</span><span class="cn">决策门</span></span><span class="nav-meta">Gate</span></a>
+        <a href="workbench.html"><span class="idx">P01</span><span class="nav-title"><span class="en">Ops Overview</span><span class="cn">运营总览</span></span><span class="nav-meta">Optional</span></a>
+        <a href="case-sharetable.html"><span class="idx">P02</span><span class="nav-title"><span class="en">Case &amp; Data</span><span class="cn">案例与数据</span></span><span class="nav-meta">Case</span></a>
+        <a href="evidence-receipt.html"><span class="idx">P04</span><span class="nav-title"><span class="en">Evidence</span><span class="cn">证据回执</span></span><span class="nav-meta">Trace</span></a>
+        <a href="readiness-dashboard.html"><span class="idx">P05</span><span class="nav-title"><span class="en">Dashboard</span><span class="cn">仪表盘</span></span><span class="nav-meta">Ready</span></a>
+        <a href="demo-observer.html"><span class="idx">P06</span><span class="nav-title"><span class="en">Observer View</span><span class="cn">观察者视图</span></span><span class="nav-meta">Safe</span></a>
+        <span class="nav-label"><span class="en">Reference</span><span class="cn">参考</span></span>
+        <a href="design-system.html"><span class="idx">DS</span><span class="nav-title"><span class="en">Design System</span><span class="cn">设计系统</span></span><span class="nav-meta">System</span></a>
+      </nav>
+      <div class="side-footer"><div class="role-chip"><b>Scenario 0a</b><span><span class="en">Reportable mainline with explicit evidence gaps.</span><span class="cn">Reportable 主线，显式展示证据缺口。</span></span></div></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumbs">P00 / VulnerabilitySignal → ReportabilityDecision</div>
+        <div class="toolbar">
+          <button class="btn ghost" type="button" data-reset-demo><span class="en">Reset demo</span><span class="cn">重置演示</span></button>
+          <div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div>
+        </div>
+      </header>
+
+      <section class="content" data-screen-label="P00 Decision Gate">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow"><span class="en">EU CRA Reporting Readiness · Gate workflow</span><span class="cn">EU CRA 报送准备度 · 决策门工作流</span></p>
+            <h2><span class="en">Decide reportability before the Case exists.</span><span class="cn">在 Case 存在前完成报送触发判断。</span></h2>
+            <p><span class="en">Move a VulnerabilitySignal through evidence-backed proof lanes, record reviewer endorsement, and only then unlock Case creation. The gate is a backend-enforced transition guard, not a UI panel.</span><span class="cn">把 VulnerabilitySignal 推过证据支撑的 proof lanes，记录审核背书，然后才解锁 Case 创建。决策门是后端强制的迁移守卫，不是 UI 面板。</span></p>
+          </div>
+          <div class="head-actions">
+            <span data-outcome-pill class="pill ok">Reportable</span>
+            <span data-endorsement-status class="pill warn">pending</span>
+          </div>
+        </div>
+
+        <div class="status-strip">
+          <div class="status-card"><b>1 · VulnerabilitySignal</b><span>SIG-001 / CVE-2026-12345 / NetShield Edge</span></div>
+          <div class="status-card"><b>2 · ReportabilityDecision</b><span data-outcome-rationale></span></div>
+          <div class="status-card"><b>3 · reviewer endorsement</b><span data-endorsement-summary>No reviewer endorsement audit event yet.</span></div>
+          <div class="status-card"><b>4 · Case creation</b><span><span class="en">Blocked until reportable + endorsed.</span><span class="cn">在 reportable + 背书前阻断。</span></span></div>
+        </div>
+
+        <div class="panel mb-4">
+          <div class="panel-head"><div><h3 class="panel-title"><span class="en">Supplier readiness journey</span><span class="cn">供应商准备度旅程</span></h3><p class="panel-sub"><span class="en">The active step is an operational gate, not a narrative milestone.</span><span class="cn">当前步骤是可执行守卫，不是叙事节点。</span></p></div></div>
+          <div class="journey">
+            <div class="journey-step done"><span class="n">01</span><b><span class="en">Signal Intake</span><span class="cn">信号录入</span></b></div>
+            <div class="journey-step done"><span class="n">02</span><b><span class="en">Risk Qualification</span><span class="cn">风险判断</span></b></div>
+            <div class="journey-step active"><span class="n">03</span><b><span class="en">Reportability Decision</span><span class="cn">报送触发判断</span></b></div>
+            <div class="journey-step"><span class="n">04</span><b><span class="en">Impact Scoping</span><span class="cn">影响范围</span></b></div>
+            <div class="journey-step"><span class="n">05</span><b><span class="en">Case &amp; Data</span><span class="cn">Case 与数据</span></b></div>
+            <div class="journey-step"><span class="n">06</span><b><span class="en">Review</span><span class="cn">审核</span></b></div>
+            <div class="journey-step"><span class="n">07</span><b><span class="en">Submission</span><span class="cn">模拟提交</span></b></div>
+            <div class="journey-step"><span class="n">08</span><b><span class="en">Evidence Trace</span><span class="cn">证据留痕</span></b></div>
+            <div class="journey-step"><span class="n">09</span><b><span class="en">Readiness Dashboard</span><span class="cn">准备度仪表盘</span></b></div>
+          </div>
+        </div>
+
+        <div class="grid two decision-gate-grid">
+          <div class="grid decision-side">
+            <div class="panel bracketed">
+              <div class="panel-head">
+                <div><h3 class="panel-title">VulnerabilitySignal · SIG-001</h3><p class="panel-sub"><span class="en">Threat-intel intake: CVE-2026-12345, CVSS 9.1, received 2026-09-01 08:30Z.</span><span class="cn">威胁情报录入：CVE-2026-12345，CVSS 9.1，接收于 2026-09-01 08:30Z。</span></p></div>
+                <span class="pill danger lg">critical</span>
+              </div>
+              <div class="grid three">
+                <div class="metric"><p class="label">product_relevance</p><p class="value"><span class="pill ok">relevant</span></p><p class="note"><span class="en">NetShield Edge sold across the EEA.</span><span class="cn">NetShield Edge 已在 EEA 销售。</span></p></div>
+                <div class="metric"><p class="label">eea_relevance</p><p class="value"><span class="pill ok">relevant</span></p><p class="note"><span class="en">FR / DE / IT / ES market scope.</span><span class="cn">涉及 FR / DE / IT / ES 市场。</span></p></div>
+                <div class="metric"><p class="label">confidence</p><p class="value">high</p><p class="note"><span class="en">2 evidence refs · 1 known gap.</span><span class="cn">2 条证据引用 · 1 个已知缺口。</span></p></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Proof lanes</span><span class="cn">三条法定 proof lane</span></h3><p class="panel-sub"><span class="en">Open each drawer to inspect source references, reliability, and unresolved gaps.</span><span class="cn">打开每个抽屉查看证据引用、可靠性与未解缺口。</span></p></div></div>
+              <div class="grid">
+                <div class="proof-lane lane-unknown"><div class="lane-code">L1</div><div><h3>actively_exploited_vulnerability</h3><p><span class="en">Forum signal suggests exploitation, but the attached evidence is not reliable enough.</span><span class="cn">论坛迹象显示可能利用，但附加证据可靠性不足。</span></p></div><div class="lane-actions"><span class="pill warn">unknown</span><button class="btn" type="button" data-open-lane="l1"><span class="en">Evidence</span><span class="cn">证据</span></button></div></div>
+                <div class="proof-lane lane-met"><div class="lane-code">L2</div><div><h3>severe_incident_security_impact</h3><p><span class="en">RCE weakens confidentiality and integrity. Evidence refs: TI-001, LAB-042.</span><span class="cn">RCE 削弱 confidentiality 与 integrity。证据引用：TI-001、LAB-042。</span></p></div><div class="lane-actions"><span class="pill ok">met</span><button class="btn" type="button" data-open-lane="l2"><span class="en">Evidence</span><span class="cn">证据</span></button></div></div>
+                <div class="proof-lane lane-notmet"><div class="lane-code">L3</div><div><h3>severe_incident_malicious_code</h3><p><span class="en">No product or user-network malicious-code execution evidence in current record.</span><span class="cn">当前记录未发现产品或用户网络中的恶意代码执行证据。</span></p></div><div class="lane-actions"><span class="pill info">not_met</span><button class="btn" type="button" data-open-lane="l3"><span class="en">Evidence</span><span class="cn">证据</span></button></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid decision-rail">
+            <div class="panel">
+              <div class="panel-head"><div><h3 class="panel-title">decision_rule_trace</h3><p class="panel-sub"><span class="en">Changing the outcome rewires every downstream guard.</span><span class="cn">切换 outcome 会重写所有下游守卫。</span></p></div></div>
+              <div class="decision-tabs mb-4">
+                <button class="state-btn" data-state-option="reportable">reportable</button>
+                <button class="state-btn" data-state-option="not_reportable">not_reportable</button>
+                <button class="state-btn" data-state-option="need_more_evidence">need_more_evidence</button>
+              </div>
+              <div class="trace">
+                <div class="trace-row"><b>IF</b><span>product_relevance = relevant</span><span class="pill ok">true</span></div>
+                <div class="trace-row"><b>AND</b><span>eea_relevance = relevant</span><span class="pill ok">true</span></div>
+                <div class="trace-row"><b>AND</b><span>L2 severe_incident_security_impact = met</span><span class="pill ok">true</span></div>
+                <div class="trace-row then"><b>THEN</b><span data-outcome-rationale></span><span data-outcome-pill class="pill ok">Reportable</span></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Reviewer endorsement</span><span class="cn">审核人背书</span></h3><p class="panel-sub"><span class="en">Endorsement writes an audit event and unblocks Case creation (INV-2).</span><span class="cn">背书写入审计事件，并解锁 Case 创建（INV-2）。</span></p></div></div>
+              <div data-case-guard class="callout danger"><strong>Case creation blocked</strong><span>Only an endorsed reportable decision can create a formal Case.</span></div>
+              <div data-action-block style="margin-top:12px">
+                <div class="head-actions" style="justify-content:flex-start">
+                  <button class="btn primary" type="button" data-open-endorsement-modal><span class="en">Open endorsement modal</span><span class="cn">打开背书弹窗</span></button>
+                </div>
+                <p class="guard-reason blocked" data-guard-reason>Guard: reviewer_endorsement is required.</p>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Audit events</span><span class="cn">审计事件</span></h3><p class="panel-sub"><span class="en">Immutable. State transitions persist across pages.</span><span class="cn">不可变。状态迁移跨页面持久化。</span></p></div><span class="pill info">immutable</span></div>
+              <div class="timeline" data-audit-event-list></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="journey-footer" aria-label="Scenario 0 navigation">
+        <a class="btn footer-back" href="index.html"><span class="en">← Launcher</span><span class="cn">← 返回入口</span></a>
+        <div class="journey-status">
+          <b><span class="en">P00 · Decision Gate</span><span class="cn">P00 · 决策门</span></b>
+          <span><span class="en">Guard: reviewer_endorsement required before Case &amp; ShareTable.</span><span class="cn">守卫：进入 Case &amp; ShareTable 前需要 reviewer_endorsement。</span></span>
+        </div>
+        <a class="btn primary footer-next" href="case-sharetable.html" data-requires="endorsement"><span class="en">Continue to P02</span><span class="cn">继续到 P02</span> <span class="arrow">→</span></a>
+      </footer>
+    </main>
+  </div>
+
+  <div class="drawer" data-evidence-drawer aria-hidden="true">
+    <div class="drawer-panel">
+      <div class="panel-head"><div><h3 class="panel-title" data-drawer-title>Evidence lane</h3><p class="panel-sub" data-drawer-note></p></div><button class="btn" type="button" data-close-drawer><span class="en">Close</span><span class="cn">关闭</span></button></div>
+      <p style="margin:6px 0 14px"><span class="pill warn" data-drawer-state>unknown</span></p>
+      <div class="callout info"><strong><span class="en">Evidence references</span><span class="cn">证据引用</span></strong><span><span class="en">Each reference is safe to cite in the decision audit log.</span><span class="cn">每条引用都可安全写入判断审计日志。</span></span></div>
+      <ul data-drawer-refs style="margin-top:14px"></ul>
+    </div>
+  </div>
+
+  <dialog class="modal" data-endorsement-modal>
+    <div class="modal-inner">
+      <div class="panel-head"><div><h3 class="panel-title"><span class="en">Record reviewer endorsement</span><span class="cn">记录审核背书</span></h3><p class="panel-sub"><span class="en">This creates an immutable audit event for DEC-001.</span><span class="cn">这会为 DEC-001 创建不可变审计事件。</span></p></div><button class="btn" type="button" data-close-endorsement-modal><span class="en">Close</span><span class="cn">关闭</span></button></div>
+      <div class="field-grid" style="margin:16px 0">
+        <div class="field"><label>reviewer</label><input data-reviewer value="Ada Rossi / Compliance Lead"></div>
+        <div class="field"><label>timestamp</label><input value="auto-generated on submit" readonly></div>
+        <div class="field" style="grid-column:1/-1"><label>comment</label><textarea data-review-comment>Evidence supports the reportable outcome; proceed to Case and keep the L1 reliability gap visible.</textarea></div>
+      </div>
+      <div class="callout warning"><strong><span class="en">Guard impact</span><span class="cn">守卫影响</span></strong><span><span class="en">Submitting this endorsement enables Case creation and advances the workflow to ShareTable v2 completion.</span><span class="cn">提交背书将启用 Case 创建，并推进到 ShareTable v2 完成。</span></span></div>
+      <div class="head-actions" style="margin-top:16px;justify-content:flex-end"><button class="btn primary" type="button" data-submit-endorsement><span class="en">Submit endorsement</span><span class="cn">提交背书</span></button></div>
+    </div>
+  </dialog>
+
+  <div class="toast" data-toast></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

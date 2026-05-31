@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ENISA SRP Readiness — Evidence Console</title>
+  <link rel="stylesheet" href="css/app.css">
+  <style>
+    .launch { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
+    .launch-top {
+      position: sticky; top: 0; z-index: 30;
+      display: flex; align-items: center; justify-content: space-between; gap: var(--s4);
+      padding: var(--s4) var(--s8);
+      background: oklch(0.185 0.014 252 / 0.82); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .launch-body { flex: 1; width: 100%; max-width: 1180px; margin: 0 auto; padding: var(--s9) var(--s6) var(--s8); }
+    .launch-hero { max-width: 760px; margin-bottom: var(--s8); }
+    .launch-hero h1 {
+      font-size: clamp(34px, 5vw, 56px); line-height: 1.04; letter-spacing: -0.03em;
+      margin: var(--s4) 0 var(--s4); text-wrap: balance;
+    }
+    .launch-hero h1 em { font-style: normal; color: var(--accent-bright); }
+    .launch-hero p { font-size: var(--fs-md); color: var(--text-mid); line-height: 1.6; max-width: 64ch; text-wrap: pretty; }
+    .hero-chips { display: flex; gap: var(--s2); flex-wrap: wrap; margin-top: var(--s5); }
+
+    .section-label {
+      display: flex; align-items: center; gap: var(--s3);
+      font-family: var(--mono); font-size: var(--fs-micro); letter-spacing: var(--track-wide);
+      text-transform: uppercase; color: var(--text-low); margin: var(--s7) 0 var(--s4);
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line-soft); }
+
+    .screen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); }
+    .screen-card {
+      position: relative; display: flex; flex-direction: column; gap: var(--s3);
+      padding: var(--s5); min-height: 168px;
+      border: 1px solid var(--line-soft); border-radius: var(--r-lg);
+      background: linear-gradient(180deg, var(--surface-1), oklch(0.2 0.015 250));
+      transition: border-color var(--t) var(--ease), transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+      overflow: hidden;
+    }
+    .screen-card::before { content: ''; position: absolute; left: var(--s5); right: 50%; top: -1px; height: 1px; background: linear-gradient(90deg, var(--accent-line), transparent); }
+    .screen-card:hover { border-color: var(--accent-line); transform: translateY(-3px); box-shadow: 0 12px 32px oklch(0 0 0 / 0.4), 0 0 24px var(--accent-glow); }
+    .screen-card .sc-head { display: flex; align-items: center; justify-content: space-between; }
+    .screen-card .sc-idx { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent-bright); letter-spacing: 0.04em; }
+    .screen-card h3 { font-size: var(--fs-h3); }
+    .screen-card p { font-size: var(--fs-meta); color: var(--text-low); line-height: 1.5; }
+    .screen-card .sc-go { margin-top: auto; font-family: var(--mono); font-size: var(--fs-meta); color: var(--text-mid); display: flex; align-items: center; gap: 6px; }
+    .screen-card:hover .sc-go { color: var(--accent-bright); }
+    .screen-card .sc-go .arrow { transition: transform var(--t-fast); }
+    .screen-card:hover .sc-go .arrow { transform: translateX(4px); }
+
+    .ds-card { grid-column: span 3; flex-direction: row; align-items: center; justify-content: space-between; min-height: auto; gap: var(--s5); }
+    .ds-card .sc-go { margin-top: 0; }
+
+    .launch-foot { border-top: 1px solid var(--line-soft); padding: var(--s5) var(--s8); }
+    .launch-foot p { font-family: var(--mono); font-size: var(--fs-meta); color: var(--text-faint); line-height: 1.6; max-width: 90ch; }
+    @media (max-width: 1099px) {
+      .launch-top { padding: var(--s4) var(--s5); }
+      .launch-body { padding: var(--s7) var(--s5) var(--s7); }
+      .screen-grid { grid-template-columns: 1fr 1fr; }
+      .ds-card { grid-column: span 2; }
+    }
+    @media (max-width: 700px) {
+      .launch-top { padding: var(--s3) var(--s4); flex-wrap: wrap; gap: var(--s3); }
+      .launch-top .toolbar { width: 100%; justify-content: space-between; }
+      .launch-body { padding: var(--s6) var(--s4); }
+      .screen-grid { grid-template-columns: 1fr; }
+      .ds-card { grid-column: span 1; flex-direction: column; align-items: flex-start; }
+      .launch-foot { padding: var(--s5) var(--s4); }
+    }
+  </style>
+</head>
+<body>
+  <div class="launch">
+    <header class="launch-top">
+      <div class="brand">
+        <div class="brand-mark">SRP</div>
+        <div>
+          <h1><span class="en">ENISA SRP Readiness</span><span class="cn">ENISA SRP 准备度</span></h1>
+          <p><span class="en">Evidence Console</span><span class="cn">证据控制台</span></p>
+        </div>
+      </div>
+      <div class="toolbar">
+        <a class="btn ghost" href="design-system.html"><span class="en">Design system</span><span class="cn">设计系统</span></a>
+        <div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div>
+        <a class="btn primary" href="p00-decision-gate.html"><span class="en">Start Scenario 0 →</span><span class="cn">开始 Scenario 0 →</span></a>
+      </div>
+    </header>
+
+    <main class="launch-body">
+      <section class="launch-hero">
+        <p class="eyebrow"><span class="en">External-facing Supplier Readiness Exhibit · EU CRA / SRP</span><span class="cn">对外供应商准备度展示 · EU CRA / SRP</span></p>
+        <h1><span class="en">From a vulnerability signal to a <em>provable, regulator-safe</em> reporting package.</span><span class="cn">从漏洞信号到<em>可证明、监管安全</em>的报送包。</span></h1>
+        <p><span class="en">This exhibit proves an evidence-based reportability decision before any Case exists — then carries that judgment end-to-end into an auditable, traceable package. It is a readiness demonstration, not a reporting form, and never claims integration with the official SRP.</span><span class="cn">本展示在任何 Case 存在之前先证明基于证据的报送触发判断，再把这一判断端到端转化为可审计、可留痕的报送包。它是准备度展示，而非报送表单，且绝不宣称已对接官方 SRP。</span></p>
+        <div class="hero-chips">
+          <span class="pill accent">role: demo_observer</span>
+          <span class="pill ok">Scenario 0a · reportable mainline</span>
+          <span class="pill warn">explicit known gaps</span>
+          <span class="pill info">EN / 中文</span>
+        </div>
+      </section>
+
+      <div class="section-label"><span class="en">Supplier readiness journey · Scenario 0</span><span class="cn">供应商准备度旅程 · Scenario 0</span></div>
+      <div class="panel">
+        <div class="journey">
+          <div class="journey-step done"><span class="n">01</span><b><span class="en">Signal Intake</span><span class="cn">信号录入</span></b></div>
+          <div class="journey-step done"><span class="n">02</span><b><span class="en">Risk Qualification</span><span class="cn">风险判断</span></b></div>
+          <div class="journey-step active"><span class="n">03</span><b><span class="en">Reportability Decision</span><span class="cn">报送触发判断</span></b></div>
+          <div class="journey-step"><span class="n">04</span><b><span class="en">Impact Scoping</span><span class="cn">影响范围</span></b></div>
+          <div class="journey-step"><span class="n">05</span><b><span class="en">Case &amp; Data</span><span class="cn">Case 与数据</span></b></div>
+          <div class="journey-step"><span class="n">06</span><b><span class="en">Review</span><span class="cn">审核</span></b></div>
+          <div class="journey-step"><span class="n">07</span><b><span class="en">Submission</span><span class="cn">模拟提交</span></b></div>
+          <div class="journey-step"><span class="n">08</span><b><span class="en">Evidence Trace</span><span class="cn">证据留痕</span></b></div>
+          <div class="journey-step"><span class="n">09</span><b><span class="en">Readiness Dashboard</span><span class="cn">准备度仪表盘</span></b></div>
+        </div>
+      </div>
+
+      <div class="section-label"><span class="en">Screens</span><span class="cn">页面</span></div>
+      <div class="screen-grid">
+        <a class="screen-card" href="p00-decision-gate.html">
+          <div class="sc-head"><span class="sc-idx">P00</span><span class="pill accent">Gate</span></div>
+          <h3><span class="en">Decision Gate</span><span class="cn">决策门</span></h3>
+          <p><span class="en">VulnerabilitySignal → ReportabilityDecision. Proof lanes, rule trace, reviewer endorsement.</span><span class="cn">VulnerabilitySignal → ReportabilityDecision。Proof lanes、规则追踪、审核背书。</span></p>
+          <span class="sc-go"><span class="en">Enter</span><span class="cn">进入</span><span class="arrow">→</span></span>
+        </a>
+        <a class="screen-card" href="workbench.html">
+          <div class="sc-head"><span class="sc-idx">P01</span><span class="pill info">Optional</span></div>
+          <h3><span class="en">Ops Workbench</span><span class="cn">运营工作台</span></h3>
+          <p><span class="en">Mixed queue of signals, decisions, cases and gaps. Command-center context.</span><span class="cn">信号、判断、Case 和缺口的混合队列。指挥中心上下文。</span></p>
+          <span class="sc-go"><span class="en">Enter</span><span class="cn">进入</span><span class="arrow">→</span></span>
+        </a>
+        <a class="screen-card" href="case-sharetable.html">
+          <div class="sc-head"><span class="sc-idx">P02</span><span class="pill accent">Case</span></div>
+          <h3><span class="en">Case &amp; ShareTable</span><span class="cn">案例与数据</span></h3>
+          <p><span class="en">ShareTable v2 completion gate. AffectedProductVersion, country routing, validation.</span><span class="cn">ShareTable v2 完成守卫。AffectedProductVersion、国家路由、校验。</span></p>
+          <span class="sc-go"><span class="en">Enter</span><span class="cn">进入</span><span class="arrow">→</span></span>
+        </a>
+        <a class="screen-card" href="evidence-receipt.html">
+          <div class="sc-head"><span class="sc-idx">P04</span><span class="pill accent">Trace</span></div>
+          <h3><span class="en">Evidence &amp; Receipt</span><span class="cn">证据与回执</span></h3>
+          <p><span class="en">Immutable snapshot, then PortalReceiptEvidence. received_registered ≠ legal acceptance.</span><span class="cn">不可变快照，再附加 PortalReceiptEvidence。received_registered ≠ 法律接受。</span></p>
+          <span class="sc-go"><span class="en">Enter</span><span class="cn">进入</span><span class="arrow">→</span></span>
+        </a>
+        <a class="screen-card" href="readiness-dashboard.html">
+          <div class="sc-head"><span class="sc-idx">P05</span><span class="pill accent">Ready</span></div>
+          <h3><span class="en">Readiness Dashboard</span><span class="cn">准备度仪表盘</span></h3>
+          <p><span class="en">Decision, evidence, country path, SLA-honesty and redaction — with drilldowns.</span><span class="cn">判断、证据、国家路径、SLA 诚实度与脱敏 —— 含下钻。</span></p>
+          <span class="sc-go"><span class="en">Enter</span><span class="cn">进入</span><span class="arrow">→</span></span>
+        </a>
+        <a class="screen-card" href="demo-observer.html">
+          <div class="sc-head"><span class="sc-idx">P06</span><span class="pill ok">Safe</span></div>
+          <h3><span class="en">Observer View</span><span class="cn">观察者视图</span></h3>
+          <p><span class="en">Regulator-safe exhibit. Server-side redaction boundary, export package preview.</span><span class="cn">监管安全展示。服务端脱敏边界、导出包预览。</span></p>
+          <span class="sc-go"><span class="en">Enter</span><span class="cn">进入</span><span class="arrow">→</span></span>
+        </a>
+        <a class="screen-card ds-card" href="design-system.html">
+          <div>
+            <div class="sc-head" style="gap:var(--s3);justify-content:flex-start"><span class="sc-idx">DS</span><span class="pill accent">System</span></div>
+            <h3 style="margin-top:var(--s2)"><span class="en">Evidence Console — design system</span><span class="cn">Evidence Console —— 设计系统</span></h3>
+            <p style="margin-top:6px"><span class="en">Principles, visual language, tokens, the component library, and motion rules behind every screen.</span><span class="cn">所有页面背后的设计原则、视觉语言、tokens、组件库与动效规则。</span></p>
+          </div>
+          <span class="sc-go"><span class="en">Open the board</span><span class="cn">打开设计板</span><span class="arrow">→</span></span>
+        </a>
+      </div>
+    </main>
+
+    <footer class="launch-foot">
+      <p><span class="en">Boundary: this system is not a clone, replacement, or official compliance submission system for the ENISA SRP. Its API / CLI are internal rehearsal interfaces. Portal receipts indicate received_registered only — never legal acceptance. No real submissions are made.</span><span class="cn">边界：本系统不是 ENISA SRP 的复刻、替代或正式合规报送系统。其 API / CLI 为内部演练接口。门户回执仅表示 received_registered —— 绝非法律接受。不做任何真实提交。</span></p>
+    </footer>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P01 · Operations Workbench — Evidence Console</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="side">
+      <div class="brand"><div class="brand-mark">SRP</div><div><h1><span class="en">ENISA SRP Readiness</span><span class="cn">ENISA SRP 准备度</span></h1><p><span class="en">Evidence Console</span><span class="cn">证据控制台</span></p></div></div>
+      <nav class="nav" aria-label="Screens">
+        <span class="nav-label"><span class="en">Journey</span><span class="cn">旅程</span></span>
+        <a href="index.html"><span class="idx">00</span><span class="nav-title"><span class="en">Launcher</span><span class="cn">入口总览</span></span><span class="nav-meta">Index</span></a>
+        <a href="p00-decision-gate.html"><span class="idx">P00</span><span class="nav-title"><span class="en">Decision Gate</span><span class="cn">决策门</span></span><span class="nav-meta">Gate</span></a>
+        <a class="active" href="workbench.html"><span class="idx">P01</span><span class="nav-title"><span class="en">Ops Overview</span><span class="cn">运营总览</span></span><span class="nav-meta">Optional</span></a>
+        <a href="case-sharetable.html"><span class="idx">P02</span><span class="nav-title"><span class="en">Case &amp; Data</span><span class="cn">案例与数据</span></span><span class="nav-meta">Case</span></a>
+        <a href="evidence-receipt.html"><span class="idx">P04</span><span class="nav-title"><span class="en">Evidence</span><span class="cn">证据回执</span></span><span class="nav-meta">Trace</span></a>
+        <a href="readiness-dashboard.html"><span class="idx">P05</span><span class="nav-title"><span class="en">Dashboard</span><span class="cn">仪表盘</span></span><span class="nav-meta">Ready</span></a>
+        <a href="demo-observer.html"><span class="idx">P06</span><span class="nav-title"><span class="en">Observer View</span><span class="cn">观察者视图</span></span><span class="nav-meta">Safe</span></a>
+        <span class="nav-label"><span class="en">Reference</span><span class="cn">参考</span></span>
+        <a href="design-system.html"><span class="idx">DS</span><span class="nav-title"><span class="en">Design System</span><span class="cn">设计系统</span></span><span class="nav-meta">System</span></a>
+      </nav>
+      <div class="side-footer"><div class="role-chip"><b><span class="en">Optional</span><span class="cn">可选</span></b><span><span class="en">Not a required Scenario 0 checkpoint — team command center.</span><span class="cn">非 Scenario 0 必经节点 —— 团队指挥中心。</span></span></div></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumbs">P01 / optional operations context / queue overview</div>
+        <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
+      </header>
+
+      <section class="content" data-screen-label="P01 Workbench">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow"><span class="en">Optional operations command center</span><span class="cn">可选运营指挥中心</span></p>
+            <h2><span class="en">Operations Workbench · Queue Overview</span><span class="cn">运营工作台 · 队列总览</span></h2>
+            <p><span class="en">Not a required Scenario 0 checkpoint — the team command center for monitoring multiple signals, decisions, cases, and evidence gaps in parallel.</span><span class="cn">非 Scenario 0 必经节点 —— 用于并行监控多条信号、判断、Case 与证据缺口的团队指挥中心。</span></p>
+          </div>
+          <div class="head-actions"><span data-outcome-pill class="pill ok">Reportable</span></div>
+        </div>
+
+        <div class="callout info mb-4">
+          <strong><span class="en">Scenario 0 route</span><span class="cn">Scenario 0 路径</span></strong>
+          <span><span class="en">Main demo path: P00 → P02 → P04 → P05 → P06. Use P01 only when the reviewer wants queue context across parallel work.</span><span class="cn">主演示路径：P00 → P02 → P04 → P05 → P06。仅当评审者需要并行工作的队列上下文时才进入 P01。</span></span>
+        </div>
+
+        <div class="grid four mb-4">
+          <div class="metric"><p class="label">Signals</p><p class="value">7</p><p class="note"><span class="en">3 await decision review.</span><span class="cn">3 条等待判断审核。</span></p></div>
+          <div class="metric"><p class="label">Decisions</p><p class="value">5</p><p class="note"><span class="en">1 not_reportable retained for audit.</span><span class="cn">1 条 not_reportable 留审计。</span></p></div>
+          <div class="metric"><p class="label">Gaps</p><p class="value">4</p><p class="note"><span class="en">UTC timestamp · authority path · L1.</span><span class="cn">UTC 时间戳 · 机构路径 · L1。</span></p></div>
+          <div class="metric"><p class="label"><span class="en">Case readiness</span><span class="cn">Case 准备度</span></p><p class="value"><span data-package-status class="pill warn">pending</span></p><p class="note"><span class="en">Reflects cross-page state.</span><span class="cn">反映跨页状态。</span></p></div>
+        </div>
+
+        <div class="panel mb-4">
+          <div class="workbench-filter-row" aria-label="Queue filters" style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="state-btn active" data-filter="all">all</button>
+            <button class="state-btn" data-filter="reportable">reportable</button>
+            <button class="state-btn" data-filter="case">case</button>
+            <button class="state-btn" data-filter="blocked">blocked</button>
+            <button class="state-btn" data-filter="not_reportable">not_reportable</button>
+          </div>
+        </div>
+
+        <div class="split wide">
+          <div class="panel">
+            <div class="panel-head"><div><h3 class="panel-title"><span class="en">Mixed queue</span><span class="cn">混合队列</span></h3><p class="panel-sub"><span class="en">Click a row to load the detail panel. Filters truly hide/show rows.</span><span class="cn">点击行加载详情面板。筛选会真实隐藏/显示行。</span></p></div></div>
+            <div class="queue-list" aria-label="Mixed object queue">
+              <button type="button" class="queue-row selected" data-row-id="SIG-001" data-tags="reportable blocked">
+                <span class="queue-id">SIG-001</span>
+                <span class="queue-object"><b>Signal</b><small>M. Chen / SecOps</small></span>
+                <span class="queue-status"><span class="pill ok">reportable</span><span class="pill warn">L1 reliability</span></span>
+                <span class="queue-meta"><b>T0 +14h</b><small>FR / DE / IT / ES</small></span>
+                <span class="queue-next"><b><span class="en">Pending endorsement</span><span class="cn">待背书</span></b><small><span class="en">Reviewer must endorse before Case creation.</span><span class="cn">审核人需先背书再创建 Case。</span></small></span>
+              </button>
+              <button type="button" class="queue-row" data-row-id="DEC-001" data-tags="reportable blocked">
+                <span class="queue-id">DEC-001</span>
+                <span class="queue-object"><b>Decision</b><small>A. Rossi / Compliance</small></span>
+                <span class="queue-status"><span data-endorsement-status class="pill warn">pending</span><span class="pill warn">comment required</span></span>
+                <span class="queue-meta"><b>T0 +15h</b><small>FR portal path</small></span>
+                <span class="queue-next"><b><span class="en">Endorse on P00</span><span class="cn">在 P00 背书</span></b><small><span class="en">Decision waits for reviewer comment.</span><span class="cn">判断等待审核人评论。</span></small></span>
+              </button>
+              <button type="button" class="queue-row" data-row-id="CASE-014" data-tags="case reportable blocked">
+                <span class="queue-id">CASE-014</span>
+                <span class="queue-object"><b>Case</b><small>L. Martin / Product Sec</small></span>
+                <span class="queue-status"><span class="pill ok">endorsed</span><span class="pill danger">3 blockers</span></span>
+                <span class="queue-meta"><b>24h open</b><small>FR ready / IT gap</small></span>
+                <span class="queue-next"><b><span class="en">Complete ShareTable</span><span class="cn">完成 ShareTable</span></b><small><span class="en">Country path, UTC, refs missing.</span><span class="cn">国家路径、UTC、引用缺失。</span></small></span>
+              </button>
+              <button type="button" class="queue-row" data-row-id="GAP-007" data-tags="blocked">
+                <span class="queue-id">GAP-007</span>
+                <span class="queue-object"><b>Gap</b><small>J. Novak / Legal Ops</small></span>
+                <span class="queue-status"><span data-sla-risk class="pill danger">high</span><span class="pill danger">UTC timestamp</span></span>
+                <span class="queue-meta"><b>72h risk</b><small>Receipt local-only</small></span>
+                <span class="queue-next"><b><span class="en">Add limitation note</span><span class="cn">添加限制说明</span></b><small><span class="en">Timestamp uncertainty stays visible.</span><span class="cn">时间戳不确定性保持可见。</span></small></span>
+              </button>
+              <button type="button" class="queue-row" data-row-id="DEC-003" data-tags="not_reportable">
+                <span class="queue-id">DEC-003</span>
+                <span class="queue-object"><b>Decision</b><small>S. Weber / Engineering</small></span>
+                <span class="queue-status"><span class="pill info">not_reportable</span><span class="pill ok">no gaps</span></span>
+                <span class="queue-meta"><b>SLA off</b><small>Not in EEA market</small></span>
+                <span class="queue-next"><b><span class="en">Audit only</span><span class="cn">仅审计</span></b><small><span class="en">No Case is created for this decision.</span><span class="cn">该判断不创建 Case。</span></small></span>
+              </button>
+            </div>
+          </div>
+
+          <aside class="grid">
+            <div class="panel">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Selected object</span><span class="cn">选中对象</span></h3><p class="panel-sub"><span class="en">Updates when a row is selected.</span><span class="cn">选中行时同步更新。</span></p></div><span class="pill info" data-detail-type>Signal</span></div>
+              <div class="field-grid">
+                <div class="field"><label>ID</label><input data-detail-id value="SIG-001" readonly></div>
+                <div class="field"><label>owner</label><input data-detail-owner value="M. Chen / SecOps" readonly></div>
+                <div class="field"><label>SLA clock</label><input data-detail-sla value="T0 + 14h 22m" readonly></div>
+                <div class="field"><label>next action</label><div class="field-value" data-detail-next>Reviewer endorse</div></div>
+                <div class="field" style="grid-column:1/-1"><label>title</label><input data-detail-title value="CVE-2026-12345 / NetShield Edge" readonly></div>
+                <div class="field" style="grid-column:1/-1"><label>blocked reason</label><textarea data-detail-blocked readonly>Case creation waits for an endorsed reportable decision.</textarea></div>
+              </div>
+              <div class="callout info" style="margin-top:12px"><strong><span class="en">Operational note</span><span class="cn">运行备注</span></strong><span data-detail-copy>L2 severe impact is met; L1 reliability still carries a source limitation.</span></div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="panel workbench-guard-panel mt-4">
+          <div class="panel-head"><div><h3 class="panel-title"><span class="en">Workflow guard</span><span class="cn">工作流守卫</span></h3></div></div>
+          <div class="callout info"><strong><span class="en">Journey navigation lives in the footer</span><span class="cn">旅程导航位于底部栏</span></strong><span><span class="en">Use the workbench to inspect parallel objects; use the footer to continue the main Scenario 0 path to P02.</span><span class="cn">工作台用于检查并行对象；用底部栏继续 Scenario 0 主路径到 P02。</span></span></div>
+        </div>
+      </section>
+
+      <footer class="journey-footer" aria-label="Scenario 0 navigation">
+        <a class="btn footer-back" href="p00-decision-gate.html"><span class="en">← P00</span><span class="cn">← P00</span></a>
+        <div class="journey-status">
+          <b><span class="en">P01 · Optional Ops Overview</span><span class="cn">P01 · 可选运营总览</span></b>
+          <span><span class="en">Optional operations context, not required for Scenario 0.</span><span class="cn">可选运营上下文，非 Scenario 0 必经。</span></span>
+        </div>
+        <a class="btn primary footer-next" href="case-sharetable.html"><span class="en">Continue to P02</span><span class="cn">继续到 P02</span> <span class="arrow">→</span></a>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

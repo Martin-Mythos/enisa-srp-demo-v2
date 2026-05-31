@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P05 · Readiness Dashboard — Evidence Console</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="side">
+      <div class="brand"><div class="brand-mark">SRP</div><div><h1><span class="en">ENISA SRP Readiness</span><span class="cn">ENISA SRP 准备度</span></h1><p><span class="en">Evidence Console</span><span class="cn">证据控制台</span></p></div></div>
+      <nav class="nav" aria-label="Screens">
+        <span class="nav-label"><span class="en">Journey</span><span class="cn">旅程</span></span>
+        <a href="index.html"><span class="idx">00</span><span class="nav-title"><span class="en">Launcher</span><span class="cn">入口总览</span></span><span class="nav-meta">Index</span></a>
+        <a href="p00-decision-gate.html"><span class="idx">P00</span><span class="nav-title"><span class="en">Decision Gate</span><span class="cn">决策门</span></span><span class="nav-meta">Gate</span></a>
+        <a href="workbench.html"><span class="idx">P01</span><span class="nav-title"><span class="en">Ops Overview</span><span class="cn">运营总览</span></span><span class="nav-meta">Optional</span></a>
+        <a href="case-sharetable.html"><span class="idx">P02</span><span class="nav-title"><span class="en">Case &amp; Data</span><span class="cn">案例与数据</span></span><span class="nav-meta">Case</span></a>
+        <a href="evidence-receipt.html"><span class="idx">P04</span><span class="nav-title"><span class="en">Evidence</span><span class="cn">证据回执</span></span><span class="nav-meta">Trace</span></a>
+        <a class="active" href="readiness-dashboard.html"><span class="idx">P05</span><span class="nav-title"><span class="en">Dashboard</span><span class="cn">仪表盘</span></span><span class="nav-meta">Ready</span></a>
+        <a href="demo-observer.html"><span class="idx">P06</span><span class="nav-title"><span class="en">Observer View</span><span class="cn">观察者视图</span></span><span class="nav-meta">Safe</span></a>
+        <span class="nav-label"><span class="en">Reference</span><span class="cn">参考</span></span>
+        <a href="design-system.html"><span class="idx">DS</span><span class="nav-title"><span class="en">Design System</span><span class="cn">设计系统</span></span><span class="nav-meta">System</span></a>
+      </nav>
+      <div class="side-footer"><div class="role-chip"><b><span class="en">SLA honesty</span><span class="cn">SLA 诚实度</span></b><span><span class="en">Honest gaps over a vanity 100% compliance rate.</span><span class="cn">诚实展示缺口，而非虚荣的 100% 合规率。</span></span></div></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumbs">P05 / live readiness from workflow state</div>
+        <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
+      </header>
+
+      <section class="content" data-screen-label="P05 Readiness Dashboard">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow"><span class="en">Regulator-safe readiness overview</span><span class="cn">监管安全准备度总览</span></p>
+            <h2><span class="en">Operational readiness dashboard</span><span class="cn">运行态准备度仪表盘</span></h2>
+            <p><span class="en">Live view of decision quality, evidence sufficiency, country routing, SLA risk, and observer-safe redaction. Values follow the current rehearsal workflow state — click a metric to drill in.</span><span class="cn">实时查看判断质量、证据充分度、国家路径、SLA 风险与观察者安全脱敏。数值随当前演练状态更新 —— 点击指标可下钻。</span></p>
+          </div>
+          <div class="head-actions"><span class="pill info">demo_observer-safe</span><span data-receipt-status class="pill warn">receipt pending</span></div>
+        </div>
+
+        <div class="dashboard-metrics" aria-label="Readiness drilldown metrics">
+          <button class="metric drill-card" type="button" data-drill="decision">
+            <p class="label"><span class="en">Decision coverage</span><span class="cn">判断覆盖</span></p>
+            <p class="value" data-readiness-score>42%</p>
+            <p class="note"><span class="en">Reviewer + rule-trace coverage</span><span class="cn">审核 + 规则追踪覆盖</span></p>
+          </button>
+          <button class="metric drill-card active" type="button" data-drill="evidence">
+            <p class="label"><span class="en">Evidence sufficiency</span><span class="cn">证据充分度</span></p>
+            <p class="value" data-evidence-score>61%</p>
+            <p class="note"><span class="en">Receipt + timestamp honesty</span><span class="cn">回执 + 时间戳诚实度</span></p>
+          </button>
+          <button class="metric drill-card" type="button" data-drill="country">
+            <p class="label"><span class="en">Country path readiness</span><span class="cn">国家路径准备度</span></p>
+            <p class="value">3/5</p>
+            <p class="note"><span class="en">FR ready · DE testing · ES fallback</span><span class="cn">FR ready · DE testing · ES fallback</span></p>
+          </button>
+          <button class="metric drill-card" type="button" data-drill="sla">
+            <p class="label"><span class="en">SLA risk</span><span class="cn">SLA 风险</span></p>
+            <p class="value"><span data-sla-risk class="pill danger">high</span></p>
+            <p class="note"><span class="en">T0 honesty retained</span><span class="cn">保留 T0 诚实性</span></p>
+          </button>
+        </div>
+
+        <div class="dashboard-layout">
+          <div class="dashboard-panel-grid">
+            <div class="panel dashboard-panel span-7">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Reportability distribution</span><span class="cn">报送触发分布</span></h3><p class="panel-sub"><span class="en">Outcome mix across active rehearsal decisions — not a vanity compliance rate.</span><span class="cn">当前演练判断的结果组合 —— 不是虚荣式合规率。</span></p></div><span class="pill info">100 decisions</span></div>
+              <div class="chart-bars" role="img" aria-label="reportable 58, not_reportable 22, need_more_evidence 20">
+                <div class="bar-row"><span class="bar-label">reportable</span><div class="bar-track"><div class="bar-fill" style="--w:58%"></div></div><span class="bar-value">58%</span><span class="bar-count">58</span></div>
+                <div class="bar-row"><span class="bar-label">not_reportable</span><div class="bar-track"><div class="bar-fill info" style="--w:22%"></div></div><span class="bar-value">22%</span><span class="bar-count">22</span></div>
+                <div class="bar-row"><span class="bar-label">need_more_evidence</span><div class="bar-track"><div class="bar-fill warn" style="--w:20%"></div></div><span class="bar-value">20%</span><span class="bar-count">20</span></div>
+              </div>
+            </div>
+
+            <div class="panel dashboard-panel span-5">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Receipt semantics</span><span class="cn">回执语义</span></h3><p class="panel-sub"><span class="en">Stored as a token, not interpreted as acceptance.</span><span class="cn">以 token 存储，不解释为接受。</span></p></div><span data-receipt-status class="pill warn">pending</span></div>
+              <div class="token-field"><span class="token-label">PortalReceiptEvidence.status</span><code>received_registered</code></div>
+              <div class="callout danger compact"><strong><span class="en">No legal acceptance inferred</span><span class="cn">不推断法律接受</span></strong><span><span class="en">Portal evidence proves registration only. Source limitation and timestamp uncertainty remain compliance risks.</span><span class="cn">Portal 证据仅证明登记。来源限制与时间戳不确定性仍是合规风险。</span></span></div>
+            </div>
+
+            <div class="panel dashboard-panel span-7">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Impact scope</span><span class="cn">影响范围</span></h3><p class="panel-sub"><span class="en">Product / version / country aggregation — no customer attribution.</span><span class="cn">产品 / 版本 / 国家聚合 —— 无客户归属。</span></p></div></div>
+              <div class="table-wrap">
+                <table class="compact-table">
+                  <thead><tr><th>market</th><th>product</th><th>versions</th><th>models</th><th>devices</th><th>path</th></tr></thead>
+                  <tbody>
+                    <tr><td>FR</td><td>NetShield Edge</td><td class="mono">2.4.1–2.4.3</td><td class="mono">2</td><td class="mono">52</td><td><span class="pill ok">portal rehearsal</span></td></tr>
+                    <tr><td>DE</td><td>NetShield Edge</td><td class="mono">2.4.2</td><td class="mono">2</td><td class="mono">44</td><td><span class="pill warn">testing-only</span></td></tr>
+                    <tr><td>IT</td><td>Gateway Relay</td><td class="mono">1.9.0</td><td class="mono">1</td><td class="mono">31</td><td><span class="pill danger">metadata gap</span></td></tr>
+                    <tr><td>ES</td><td>Gateway Relay</td><td class="mono">1.8.7</td><td class="mono">1</td><td class="mono">23</td><td><span class="pill warn">email fallback</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="panel dashboard-panel span-5">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Redaction coverage</span><span class="cn">脱敏覆盖</span></h3><p class="panel-sub"><span class="en">Observer export excludes sensitive fields.</span><span class="cn">观察者导出排除敏感字段。</span></p></div><span class="pill ok">6/6</span></div>
+              <div class="check-list">
+                <div class="check-item ok"><b>Customer names</b><span>omitted from observer replay</span></div>
+                <div class="check-item ok"><b>PoC / exploit</b><span>excluded from export package</span></div>
+                <div class="check-item ok"><b>Raw attachments</b><span>replaced with evidence counts</span></div>
+                <div class="check-item ok"><b>SCM detail</b><span>redacted from external view</span></div>
+                <div class="check-item ok"><b>Private notes</b><span>internal-only field group</span></div>
+                <div class="check-item ok"><b>Internal contacts</b><span>hidden from demo_observer</span></div>
+              </div>
+            </div>
+
+            <div class="panel dashboard-panel span-6">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Country path readiness</span><span class="cn">国家路径准备度</span></h3><p class="panel-sub"><span class="en">No official SRP integration overclaim; rehearsal status stays explicit.</span><span class="cn">不宣称官方 SRP 已集成；演练状态保持明确。</span></p></div></div>
+              <div class="route-list">
+                <div class="route-row"><span class="route-country">FR</span><span>ANSSI portal rehearsal</span><span class="pill ok">ready</span></div>
+                <div class="route-row"><span class="route-country">DE</span><span>BSI test channel</span><span class="pill warn">testing</span></div>
+                <div class="route-row"><span class="route-country">ES</span><span>CCN-CERT email fallback</span><span class="pill warn">fallback</span></div>
+                <div class="route-row"><span class="route-country">IT</span><span>authority metadata owner missing</span><span class="pill danger">gap</span></div>
+              </div>
+            </div>
+
+            <div class="panel dashboard-panel span-6 bracketed">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Supplier Readiness Statement</span><span class="cn">供应商准备度声明</span></h3><p class="panel-sub"><span class="en">Regulator-safe operating summary generated from current state.</span><span class="cn">基于当前状态生成的监管安全运行摘要。</span></p></div><span class="pill accent">auto</span></div>
+              <p style="font-size:var(--fs-sm);color:var(--text-mid);line-height:1.6"><span class="en">The supplier demonstrates evidence-led reportability assessment, guarded Case creation, ShareTable v2 alignment, and receipt-limitation handling. Remaining gaps are retained as explicit operational blockers rather than smoothed into a compliance percentage.</span><span class="cn">供应商展示基于证据的报送触发判断、受守卫约束的 Case 创建、ShareTable v2 对齐与回执限制处理。剩余缺口被保留为明确运行阻断项，而非被抹平成合规百分比。</span></p>
+            </div>
+          </div>
+
+          <aside class="panel dashboard-drill-panel" data-drill-panel data-default-drill="evidence">
+            <div class="panel-head"><div><h3 class="panel-title" data-drill-title>Evidence gaps</h3><p class="panel-sub"><span class="en">The selected metric drives the operational gap list.</span><span class="cn">选中的指标驱动运行缺口列表。</span></p></div><span class="pill info">drilldown</span></div>
+            <p class="drill-copy" data-drill-copy>Select a dashboard card to inspect the current gap list.</p>
+            <div class="drill-list" data-drill-list></div>
+          </aside>
+        </div>
+      </section>
+
+      <footer class="journey-footer" aria-label="Scenario 0 navigation">
+        <a class="btn footer-back" href="evidence-receipt.html"><span class="en">← P04</span><span class="cn">← P04</span></a>
+        <div class="journey-status">
+          <b><span class="en">P05 · Readiness Dashboard</span><span class="cn">P05 · 准备度仪表盘</span></b>
+          <span><span class="en">Reflects current workflow state and regulator-safe drilldowns.</span><span class="cn">反映当前工作流状态与监管安全下钻。</span></span>
+        </div>
+        <a class="btn primary footer-next" href="demo-observer.html"><span class="en">Continue to P06</span><span class="cn">继续到 P06</span> <span class="arrow">→</span></a>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

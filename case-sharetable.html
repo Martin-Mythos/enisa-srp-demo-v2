@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P02 · Case & ShareTable v2 — Evidence Console</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="side">
+      <div class="brand"><div class="brand-mark">SRP</div><div><h1><span class="en">ENISA SRP Readiness</span><span class="cn">ENISA SRP 准备度</span></h1><p><span class="en">Evidence Console</span><span class="cn">证据控制台</span></p></div></div>
+      <nav class="nav" aria-label="Screens">
+        <span class="nav-label"><span class="en">Journey</span><span class="cn">旅程</span></span>
+        <a href="index.html"><span class="idx">00</span><span class="nav-title"><span class="en">Launcher</span><span class="cn">入口总览</span></span><span class="nav-meta">Index</span></a>
+        <a href="p00-decision-gate.html"><span class="idx">P00</span><span class="nav-title"><span class="en">Decision Gate</span><span class="cn">决策门</span></span><span class="nav-meta">Gate</span></a>
+        <a href="workbench.html"><span class="idx">P01</span><span class="nav-title"><span class="en">Ops Overview</span><span class="cn">运营总览</span></span><span class="nav-meta">Optional</span></a>
+        <a class="active" href="case-sharetable.html"><span class="idx">P02</span><span class="nav-title"><span class="en">Case &amp; Data</span><span class="cn">案例与数据</span></span><span class="nav-meta">Case</span></a>
+        <a href="evidence-receipt.html"><span class="idx">P04</span><span class="nav-title"><span class="en">Evidence</span><span class="cn">证据回执</span></span><span class="nav-meta">Trace</span></a>
+        <a href="readiness-dashboard.html"><span class="idx">P05</span><span class="nav-title"><span class="en">Dashboard</span><span class="cn">仪表盘</span></span><span class="nav-meta">Ready</span></a>
+        <a href="demo-observer.html"><span class="idx">P06</span><span class="nav-title"><span class="en">Observer View</span><span class="cn">观察者视图</span></span><span class="nav-meta">Safe</span></a>
+        <span class="nav-label"><span class="en">Reference</span><span class="cn">参考</span></span>
+        <a href="design-system.html"><span class="idx">DS</span><span class="nav-title"><span class="en">Design System</span><span class="cn">设计系统</span></span><span class="nav-meta">System</span></a>
+      </nav>
+      <div class="side-footer"><div class="role-chip"><b>INV-1 / INV-2</b><span><span class="en">Case binds an endorsed reportable decision before any data is valid.</span><span class="cn">Case 在任何数据有效前先绑定已背书的 reportable 判断。</span></span></div></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumbs">P02 / Case &amp; ShareTable v2 data completion</div>
+        <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
+      </header>
+
+      <section class="content" data-screen-label="P02 Case & ShareTable">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow"><span class="en">INV-1 / INV-2 enforced at the product layer</span><span class="cn">在产品层强制 INV-1 / INV-2</span></p>
+            <h2><span class="en">ShareTable v2 is the data-completion gate before snapshot generation.</span><span class="cn">ShareTable v2 是生成快照前的数据完成守卫。</span></h2>
+            <p><span class="en">The Case stays blocked until reviewer endorsement, then validation checks country path, UTC timestamp, affected versions, and evidence references — keeping known gaps explicit rather than hidden.</span><span class="cn">Case 先由审核背书放行，再校验国家路径、UTC 时间戳、受影响版本与证据引用 —— 显式保留已知缺口而非隐藏。</span></p>
+          </div>
+          <div class="head-actions">
+            <span data-outcome-pill class="pill ok">Reportable</span>
+            <span data-endorsement-status class="pill warn">pending</span>
+            <span data-validation-count class="pill danger">3 open</span>
+          </div>
+        </div>
+
+        <div data-case-guard class="callout danger mb-4"><strong><span class="en">Case creation blocked</span><span class="cn">Case 创建已阻断</span></strong><span><span class="en">Only an endorsed reportable decision can create a formal Case. Endorse on P00 first.</span><span class="cn">只有已背书的 reportable 判断才能创建正式 Case。请先在 P00 背书。</span></span></div>
+
+        <div class="case-workbench-grid">
+          <div class="panel" data-tabs>
+            <div class="tabs">
+              <button class="tab active" data-tab="decision"><span class="en">Decision binding</span><span class="cn">判断绑定</span></button>
+              <button class="tab" data-tab="shared">ShareTable A–F</button>
+              <button class="tab" data-tab="affected">AffectedProductVersion</button>
+              <button class="tab" data-tab="country"><span class="en">Country routing</span><span class="cn">国家路由</span></button>
+            </div>
+
+            <section class="tab-panel active" data-tab-panel="decision">
+              <div class="field-grid">
+                <div class="field"><label>reportability_decision_id</label><input value="DEC-001" readonly></div>
+                <div class="field"><label>case_id</label><input value="CRA-FR-20260901-01" readonly></div>
+                <div class="field"><label>decision_outcome</label><div class="field-value token-list" aria-label="decision_outcome options"><span class="pill ok">reportable</span><span class="pill info">not_reportable</span><span class="pill warn">need_more_evidence</span></div></div>
+                <div class="field"><label>reviewer_endorsement</label><input value="bound to P00 endorsement" readonly></div>
+                <div class="field"><label>awareness_datetime_t0</label><div class="field-value mono">2026-09-01T09:15:00Z · from DEC-001</div></div>
+                <div class="field"><label>timestamp_evidence_gap</label><input class="invalid" value="true · portal receipt local time only" readonly></div>
+                <div class="field" style="grid-column:1/-1"><label>case_transition_reason</label><textarea readonly>Case creation is permitted only when decision_outcome=reportable and reviewer_endorsement is recorded. This is the first point at which a formal Case can exist. T0 is inherited from the decision, not reset on Case creation.</textarea></div>
+              </div>
+            </section>
+
+            <section class="tab-panel" data-tab-panel="shared">
+              <div class="field-grid">
+                <div class="field"><label>A · supplier_legal_name</label><input value="NetShield Manufacturing GmbH"></div>
+                <div class="field"><label>B · vulnerability_identifier</label><input value="CVE-2026-12345"></div>
+                <div class="field"><label>C · product_family</label><input value="NetShield Edge"></div>
+                <div class="field"><label>D · severity_basis</label><input value="CVSS 9.1 + severe impact rationale"></div>
+                <div class="field"><label>E · affected_market_scope</label><input value="FR, DE, IT, ES"></div>
+                <div class="field"><label>F · reportability_basis</label><input value="L2 severe_incident_security_impact met"></div>
+                <div class="field"><label>BB · submission_purpose</label><select><option>legal</option><option>info</option><option>action</option></select></div>
+                <div class="field"><label>BC · reporting_path</label><select><option>fr_portal_product_vulnerability</option><option>srp</option><option>email</option><option>fallback</option><option>dry_run_snapshot</option></select></div>
+                <div class="field"><label>BG · significant_qualification_date</label><input value="2026-09-01T09:15:00Z"></div>
+                <div class="field"><label>BL · portal_receipt_datetime</label><input class="invalid" value="Known gap · local visible time only"></div>
+                <div class="field"><label>AY · cwe_or_owasp</label><input value="CWE-787 / CWE-416 candidate"></div>
+                <div class="field"><label>AZ · technical_details</label><input value="Authenticated RCE via management API parser"></div>
+                <div class="field" style="grid-column:1/-1"><label>BI · targeted_comm_plan</label><textarea>Integrator advisory first; public disclosure after coordinated patch availability.</textarea></div>
+              </div>
+            </section>
+
+            <section class="tab-panel" data-tab-panel="affected">
+              <div class="panel-head"><div><h3 class="panel-title">AffectedProductVersion</h3><p class="panel-sub"><span class="en">Repeating rows keyed by case_id + product_model + affected_version + market_country.</span><span class="cn">重复行键为 case_id + product_model + affected_version + market_country。</span></p></div><button class="btn" type="button" data-add-product><span class="en">Confirm rows</span><span class="cn">确认行</span></button></div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>product_model</th><th>affected_version</th><th>fixed_version</th><th>market</th><th>installed_base</th><th>evidence_ref</th><th>state</th></tr></thead>
+                  <tbody>
+                    <tr><td>NetShield Edge 400</td><td class="mono">2.8.0–2.8.4</td><td class="mono">2.8.6</td><td>FR</td><td class="mono">52</td><td class="mono">PROD-17</td><td><span class="pill ok">scoped</span></td></tr>
+                    <tr><td>NetShield Edge 400</td><td class="mono">2.8.0–2.8.4</td><td class="mono">2.8.6</td><td>DE</td><td class="mono">44</td><td class="mono">PROD-18</td><td><span class="pill ok">scoped</span></td></tr>
+                    <tr><td>NetShield Edge 410</td><td class="mono">2.8.1</td><td class="mono">2.8.6</td><td>IT</td><td class="mono">31</td><td class="mono">—</td><td><span class="pill warn">notes missing</span></td></tr>
+                    <tr><td>NetShield Edge 410</td><td class="mono">2.8.1</td><td class="mono">2.8.6</td><td>ES</td><td class="mono">23</td><td class="mono">PROD-20</td><td><span class="pill warn">email fallback</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="callout info" style="margin-top:12px"><strong><span class="en">Aggregated, never per-customer</span><span class="cn">聚合，绝不逐客户</span></strong><span><span class="en">installed_base is an aggregate count. Customer names and SCM detail are out of model and hidden from demo_observer.</span><span class="cn">installed_base 为聚合数。客户名与 SCM 细节不入模型，且对 demo_observer 隐藏。</span></span></div>
+            </section>
+
+            <section class="tab-panel" data-tab-panel="country">
+              <div class="grid two">
+                <div class="callout info"><strong>FR · ready</strong><span>fr_portal_product_vulnerability · Club-SSI style request reference.</span></div>
+                <div class="callout warning"><strong>DE · testing</strong><span>BSI testing period path; no production SRP integration claim.</span></div>
+                <div class="callout warning"><strong>ES · fallback</strong><span>CCN-CERT email fallback with country-note reviewer before submission.</span></div>
+                <div class="callout danger"><strong>IT · gap</strong><span>Authority path metadata incomplete; dashboard counts it as a known gap.</span></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-support-grid">
+            <div class="panel">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Validation</span><span class="cn">校验</span></h3><p class="panel-sub"><span class="en">Resolve required conditions; acknowledge honest known gaps.</span><span class="cn">解决必填条件；确认诚实的已知缺口。</span></p></div><span data-sharetable-ready class="pill danger">validation_pending</span></div>
+              <div data-validation-list></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><div><h3 class="panel-title"><span class="en">Prepare reporting package</span><span class="cn">准备报送包</span></h3><p class="panel-sub"><span class="en">Disabled until the Case guard and ShareTable validation pass.</span><span class="cn">必须通过 Case 守卫与 ShareTable 校验后才启用。</span></p></div></div>
+              <div data-action-block>
+                <button class="btn primary" type="button" data-prepare-package disabled><span class="en">Prepare reporting package</span><span class="cn">准备报送包</span></button>
+                <p class="guard-reason blocked" data-guard-reason>Guard: reviewer_endorsement is required.</p>
+              </div>
+              <div class="callout warning" style="margin-top:12px"><strong><span class="en">SLA honesty</span><span class="cn">SLA 诚实度</span></strong><span><span class="en">Case creation does not reset T0. The clock stays anchored to significant_qualification_date / decided_at.</span><span class="cn">Case 创建不重置 T0。时钟仍锚定 significant_qualification_date / decided_at。</span></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="journey-footer" aria-label="Scenario 0 navigation">
+        <a class="btn footer-back" href="p00-decision-gate.html"><span class="en">← P00</span><span class="cn">← P00</span></a>
+        <div class="journey-status">
+          <b><span class="en">P02 · Case &amp; ShareTable</span><span class="cn">P02 · Case 与 ShareTable</span></b>
+          <span><span class="en">Guard: prepare the reporting package before Evidence &amp; Receipt.</span><span class="cn">守卫：进入 Evidence &amp; Receipt 前先准备报送包。</span></span>
+        </div>
+        <a class="btn primary footer-next" href="evidence-receipt.html" data-requires="package"><span class="en">Continue to P04</span><span class="cn">继续到 P04</span> <span class="arrow">→</span></a>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
