@@ -16,9 +16,13 @@ Open:
 http://127.0.0.1:8080/index.html
 ```
 
+## Published Links
+
+- GitHub: https://github.com/Martin-Mythos/enisa-srp-demo-v2
+- Vercel: https://enisa-srp-demo-v2.vercel.app/
+
 ## Notes
 
 - Static HTML/CSS/JS only.
 - No real ENISA integration.
 - `received_registered` is treated as registration evidence only, not legal acceptance.
-
