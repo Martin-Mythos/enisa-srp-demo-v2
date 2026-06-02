@@ -27,7 +27,7 @@
 
     <main class="main">
       <header class="topbar">
-        <div class="crumbs">P00 / VulnerabilitySignal → ReportabilityDecision</div>
+        <div class="crumbs"><span class="en">P00 / VulnerabilitySignal → ReportabilityDecision</span><span class="cn">P00 / VulnerabilitySignal → ReportabilityDecision（报送触发判断）</span></div>
         <div class="toolbar">
           <button class="btn ghost" type="button" data-reset-demo><span class="en">Reset demo</span><span class="cn">重置演示</span></button>
           <div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div>
@@ -48,10 +48,10 @@
         </div>
 
         <div class="status-strip">
-          <div class="status-card"><b>1 · VulnerabilitySignal</b><span>SIG-001 / CVE-2026-12345 / NetShield Edge</span></div>
-          <div class="status-card"><b>2 · ReportabilityDecision</b><span data-outcome-rationale></span></div>
-          <div class="status-card"><b>3 · reviewer endorsement</b><span data-endorsement-summary>No reviewer endorsement audit event yet.</span></div>
-          <div class="status-card"><b>4 · Case creation</b><span><span class="en">Blocked until reportable + endorsed.</span><span class="cn">在 reportable + 背书前阻断。</span></span></div>
+          <div class="status-card"><b><span class="en">1 · VulnerabilitySignal</span><span class="cn">1 · VulnerabilitySignal（漏洞信号）</span></b><span>SIG-001 / CVE-2026-12345 / NetShield Edge</span></div>
+          <div class="status-card"><b><span class="en">2 · ReportabilityDecision</span><span class="cn">2 · ReportabilityDecision（报送触发判断）</span></b><span data-outcome-rationale></span></div>
+          <div class="status-card"><b><span class="en">3 · reviewer endorsement</span><span class="cn">3 · 审核人背书 (reviewer endorsement)</span></b><span data-endorsement-summary>No reviewer endorsement audit event yet.</span></div>
+          <div class="status-card"><b><span class="en">4 · Case creation</span><span class="cn">4 · Case 创建 (Case creation)</span></b><span><span class="en">Blocked until reportable + endorsed.</span><span class="cn">在 reportable + 背书前阻断。</span></span></div>
         </div>
 
         <div class="panel mb-4">
@@ -73,7 +73,7 @@
           <div class="grid decision-side">
             <div class="panel bracketed">
               <div class="panel-head">
-                <div><h3 class="panel-title">VulnerabilitySignal · SIG-001</h3><p class="panel-sub"><span class="en">Threat-intel intake: CVE-2026-12345, CVSS 9.1, received 2026-09-01 08:30Z.</span><span class="cn">威胁情报录入：CVE-2026-12345，CVSS 9.1，接收于 2026-09-01 08:30Z。</span></p></div>
+                <div><h3 class="panel-title"><span class="en">VulnerabilitySignal · SIG-001</span><span class="cn">VulnerabilitySignal（漏洞信号）· SIG-001</span></h3><p class="panel-sub"><span class="en">Threat-intel intake: CVE-2026-12345, CVSS 9.1, received 2026-09-01 08:30Z.</span><span class="cn">威胁情报录入：CVE-2026-12345，CVSS 9.1，接收于 2026-09-01 08:30Z。</span></p></div>
                 <span class="pill danger lg">critical</span>
               </div>
               <div class="grid three">
@@ -152,9 +152,9 @@
     <div class="modal-inner">
       <div class="panel-head"><div><h3 class="panel-title"><span class="en">Record reviewer endorsement</span><span class="cn">记录审核背书</span></h3><p class="panel-sub"><span class="en">This creates an immutable audit event for DEC-001.</span><span class="cn">这会为 DEC-001 创建不可变审计事件。</span></p></div><button class="btn" type="button" data-close-endorsement-modal><span class="en">Close</span><span class="cn">关闭</span></button></div>
       <div class="field-grid" style="margin:16px 0">
-        <div class="field"><label>reviewer</label><input data-reviewer value="Ada Rossi / Compliance Lead"></div>
-        <div class="field"><label>timestamp</label><input value="auto-generated on submit" readonly></div>
-        <div class="field" style="grid-column:1/-1"><label>comment</label><textarea data-review-comment>Evidence supports the reportable outcome; proceed to Case and keep the L1 reliability gap visible.</textarea></div>
+        <div class="field"><label><span class="en">reviewer</span><span class="cn">审核人 (reviewer)</span></label><input data-reviewer value="Ada Rossi / Compliance Lead"></div>
+        <div class="field"><label><span class="en">timestamp</span><span class="cn">时间戳 (timestamp)</span></label><input value="auto-generated on submit" readonly></div>
+        <div class="field" style="grid-column:1/-1"><label><span class="en">comment</span><span class="cn">备注 (comment)</span></label><textarea data-review-comment>Evidence supports the reportable outcome; proceed to Case and keep the L1 reliability gap visible.</textarea></div>
       </div>
       <div class="callout warning"><strong><span class="en">Guard impact</span><span class="cn">守卫影响</span></strong><span><span class="en">Submitting this endorsement enables Case creation and advances the workflow to ShareTable v2 completion.</span><span class="cn">提交背书将启用 Case 创建，并推进到 ShareTable v2 完成。</span></span></div>
       <div class="head-actions" style="margin-top:16px;justify-content:flex-end"><button class="btn primary" type="button" data-submit-endorsement><span class="en">Submit endorsement</span><span class="cn">提交背书</span></button></div>

@@ -27,7 +27,7 @@
 
     <main class="main">
       <header class="topbar">
-        <div class="crumbs">P05 / live readiness from workflow state</div>
+        <div class="crumbs"><span class="en">P05 / live readiness from workflow state</span><span class="cn">P05 / 基于工作流状态的实时准备度</span></div>
         <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
       </header>
 
@@ -85,7 +85,7 @@
               <div class="panel-head"><div><h3 class="panel-title"><span class="en">Impact scope</span><span class="cn">影响范围</span></h3><p class="panel-sub"><span class="en">Product / version / country aggregation — no customer attribution.</span><span class="cn">产品 / 版本 / 国家聚合 —— 无客户归属。</span></p></div></div>
               <div class="table-wrap">
                 <table class="compact-table">
-                  <thead><tr><th>market</th><th>product</th><th>versions</th><th>models</th><th>devices</th><th>path</th></tr></thead>
+                  <thead><tr><th><span class="en">market</span><span class="cn">市场 (market)</span></th><th><span class="en">product</span><span class="cn">产品 (product)</span></th><th><span class="en">versions</span><span class="cn">版本 (versions)</span></th><th><span class="en">models</span><span class="cn">型号 (models)</span></th><th><span class="en">devices</span><span class="cn">设备数 (devices)</span></th><th><span class="en">path</span><span class="cn">路径 (path)</span></th></tr></thead>
                   <tbody>
                     <tr><td>FR</td><td>NetShield Edge</td><td class="mono">2.4.1–2.4.3</td><td class="mono">2</td><td class="mono">52</td><td><span class="pill ok">portal rehearsal</span></td></tr>
                     <tr><td>DE</td><td>NetShield Edge</td><td class="mono">2.4.2</td><td class="mono">2</td><td class="mono">44</td><td><span class="pill warn">testing-only</span></td></tr>
@@ -99,22 +99,22 @@
             <div class="panel dashboard-panel span-5">
               <div class="panel-head"><div><h3 class="panel-title"><span class="en">Redaction coverage</span><span class="cn">脱敏覆盖</span></h3><p class="panel-sub"><span class="en">Observer export excludes sensitive fields.</span><span class="cn">观察者导出排除敏感字段。</span></p></div><span class="pill ok">6/6</span></div>
               <div class="check-list">
-                <div class="check-item ok"><b>Customer names</b><span>omitted from observer replay</span></div>
-                <div class="check-item ok"><b>PoC / exploit</b><span>excluded from export package</span></div>
-                <div class="check-item ok"><b>Raw attachments</b><span>replaced with evidence counts</span></div>
-                <div class="check-item ok"><b>SCM detail</b><span>redacted from external view</span></div>
-                <div class="check-item ok"><b>Private notes</b><span>internal-only field group</span></div>
-                <div class="check-item ok"><b>Internal contacts</b><span>hidden from demo_observer</span></div>
+                <div class="check-item ok"><b><span class="en">Customer names</span><span class="cn">客户名称 (Customer names)</span></b><span><span class="en">omitted from observer replay</span><span class="cn">从观察者回放中省略</span></span></div>
+                <div class="check-item ok"><b><span class="en">PoC / exploit</span><span class="cn">PoC / 利用代码 (PoC / exploit)</span></b><span><span class="en">excluded from export package</span><span class="cn">从导出包中排除</span></span></div>
+                <div class="check-item ok"><b><span class="en">Raw attachments</span><span class="cn">原始附件 (Raw attachments)</span></b><span><span class="en">replaced with evidence counts</span><span class="cn">替换为证据计数</span></span></div>
+                <div class="check-item ok"><b><span class="en">SCM detail</span><span class="cn">SCM 细节 (SCM detail)</span></b><span><span class="en">redacted from external view</span><span class="cn">从外部视图脱敏</span></span></div>
+                <div class="check-item ok"><b><span class="en">Private notes</span><span class="cn">私密备注 (Private notes)</span></b><span><span class="en">internal-only field group</span><span class="cn">仅内部字段组</span></span></div>
+                <div class="check-item ok"><b><span class="en">Internal contacts</span><span class="cn">内部联系人 (Internal contacts)</span></b><span><span class="en">hidden from demo_observer</span><span class="cn">对 demo_observer 隐藏</span></span></div>
               </div>
             </div>
 
             <div class="panel dashboard-panel span-6">
               <div class="panel-head"><div><h3 class="panel-title"><span class="en">Country path readiness</span><span class="cn">国家路径准备度</span></h3><p class="panel-sub"><span class="en">No official SRP integration overclaim; rehearsal status stays explicit.</span><span class="cn">不宣称官方 SRP 已集成；演练状态保持明确。</span></p></div></div>
               <div class="route-list">
-                <div class="route-row"><span class="route-country">FR</span><span>ANSSI portal rehearsal</span><span class="pill ok">ready</span></div>
-                <div class="route-row"><span class="route-country">DE</span><span>BSI test channel</span><span class="pill warn">testing</span></div>
-                <div class="route-row"><span class="route-country">ES</span><span>CCN-CERT email fallback</span><span class="pill warn">fallback</span></div>
-                <div class="route-row"><span class="route-country">IT</span><span>authority metadata owner missing</span><span class="pill danger">gap</span></div>
+                <div class="route-row"><span class="route-country">FR</span><span><span class="en">ANSSI portal rehearsal</span><span class="cn">ANSSI portal 演练</span></span><span class="pill ok"><span class="en">ready</span><span class="cn">就绪</span></span></div>
+                <div class="route-row"><span class="route-country">DE</span><span><span class="en">BSI test channel</span><span class="cn">BSI 测试通道</span></span><span class="pill warn"><span class="en">testing</span><span class="cn">测试中</span></span></div>
+                <div class="route-row"><span class="route-country">ES</span><span><span class="en">CCN-CERT email fallback</span><span class="cn">CCN-CERT 邮件降级</span></span><span class="pill warn"><span class="en">fallback</span><span class="cn">降级</span></span></div>
+                <div class="route-row"><span class="route-country">IT</span><span><span class="en">authority metadata owner missing</span><span class="cn">机构元数据负责人缺失</span></span><span class="pill danger"><span class="en">gap</span><span class="cn">缺口</span></span></div>
               </div>
             </div>
 

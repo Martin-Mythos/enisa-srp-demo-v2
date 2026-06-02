@@ -27,7 +27,7 @@
 
     <main class="main">
       <header class="topbar">
-        <div class="crumbs">P01 / optional operations context / queue overview</div>
+        <div class="crumbs"><span class="en">P01 / optional operations context / queue overview</span><span class="cn">P01 / 可选运营上下文 / 队列总览</span></div>
         <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
       </header>
 
@@ -47,9 +47,9 @@
         </div>
 
         <div class="grid four mb-4">
-          <div class="metric"><p class="label">Signals</p><p class="value">7</p><p class="note"><span class="en">3 await decision review.</span><span class="cn">3 条等待判断审核。</span></p></div>
-          <div class="metric"><p class="label">Decisions</p><p class="value">5</p><p class="note"><span class="en">1 not_reportable retained for audit.</span><span class="cn">1 条 not_reportable 留审计。</span></p></div>
-          <div class="metric"><p class="label">Gaps</p><p class="value">4</p><p class="note"><span class="en">UTC timestamp · authority path · L1.</span><span class="cn">UTC 时间戳 · 机构路径 · L1。</span></p></div>
+          <div class="metric"><p class="label"><span class="en">Signals</span><span class="cn">信号 (Signals)</span></p><p class="value">7</p><p class="note"><span class="en">3 await decision review.</span><span class="cn">3 条等待判断审核。</span></p></div>
+          <div class="metric"><p class="label"><span class="en">Decisions</span><span class="cn">判断 (Decisions)</span></p><p class="value">5</p><p class="note"><span class="en">1 not_reportable retained for audit.</span><span class="cn">1 条 not_reportable 留审计。</span></p></div>
+          <div class="metric"><p class="label"><span class="en">Gaps</span><span class="cn">缺口 (Gaps)</span></p><p class="value">4</p><p class="note"><span class="en">UTC timestamp · authority path · L1.</span><span class="cn">UTC 时间戳 · 机构路径 · L1。</span></p></div>
           <div class="metric"><p class="label"><span class="en">Case readiness</span><span class="cn">Case 准备度</span></p><p class="value"><span data-package-status class="pill warn">pending</span></p><p class="note"><span class="en">Reflects cross-page state.</span><span class="cn">反映跨页状态。</span></p></div>
         </div>
 
@@ -109,12 +109,12 @@
             <div class="panel">
               <div class="panel-head"><div><h3 class="panel-title"><span class="en">Selected object</span><span class="cn">选中对象</span></h3><p class="panel-sub"><span class="en">Updates when a row is selected.</span><span class="cn">选中行时同步更新。</span></p></div><span class="pill info" data-detail-type>Signal</span></div>
               <div class="field-grid">
-                <div class="field"><label>ID</label><input data-detail-id value="SIG-001" readonly></div>
-                <div class="field"><label>owner</label><input data-detail-owner value="M. Chen / SecOps" readonly></div>
-                <div class="field"><label>SLA clock</label><input data-detail-sla value="T0 + 14h 22m" readonly></div>
-                <div class="field"><label>next action</label><div class="field-value" data-detail-next>Reviewer endorse</div></div>
-                <div class="field" style="grid-column:1/-1"><label>title</label><input data-detail-title value="CVE-2026-12345 / NetShield Edge" readonly></div>
-                <div class="field" style="grid-column:1/-1"><label>blocked reason</label><textarea data-detail-blocked readonly>Case creation waits for an endorsed reportable decision.</textarea></div>
+                <div class="field"><label><span class="en">ID</span><span class="cn">ID</span></label><input data-detail-id value="SIG-001" readonly></div>
+                <div class="field"><label><span class="en">owner</span><span class="cn">负责人 (owner)</span></label><input data-detail-owner value="M. Chen / SecOps" readonly></div>
+                <div class="field"><label><span class="en">SLA clock</span><span class="cn">SLA 时钟 (SLA clock)</span></label><input data-detail-sla value="T0 + 14h 22m" readonly></div>
+                <div class="field"><label><span class="en">next action</span><span class="cn">下一步 (next action)</span></label><div class="field-value" data-detail-next>Reviewer endorse</div></div>
+                <div class="field" style="grid-column:1/-1"><label><span class="en">title</span><span class="cn">标题 (title)</span></label><input data-detail-title value="CVE-2026-12345 / NetShield Edge" readonly></div>
+                <div class="field" style="grid-column:1/-1"><label><span class="en">blocked reason</span><span class="cn">阻断原因 (blocked reason)</span></label><textarea data-detail-blocked readonly>Case creation waits for an endorsed reportable decision.</textarea></div>
               </div>
               <div class="callout info" style="margin-top:12px"><strong><span class="en">Operational note</span><span class="cn">运行备注</span></strong><span data-detail-copy>L2 severe impact is met; L1 reliability still carries a source limitation.</span></div>
             </div>

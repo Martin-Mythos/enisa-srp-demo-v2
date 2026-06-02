@@ -27,7 +27,7 @@
 
     <main class="main">
       <header class="topbar">
-        <div class="crumbs">P04 / submitted_payload_snapshot → PortalReceiptEvidence</div>
+        <div class="crumbs"><span class="en">P04 / submitted_payload_snapshot → PortalReceiptEvidence</span><span class="cn">P04 / submitted_payload_snapshot（已提交 payload 快照）→ PortalReceiptEvidence（门户回执证据）</span></div>
         <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
       </header>
 
@@ -97,15 +97,15 @@
           <div class="panel">
             <div class="panel-head"><div><h3 class="panel-title"><span class="en">Persistent compliance risks</span><span class="cn">持续合规风险</span></h3><p class="panel-sub"><span class="en">Success states never hide source limitation or timestamp uncertainty.</span><span class="cn">成功状态绝不隐藏来源限制或时间戳不确定性。</span></p></div></div>
             <div class="grid">
-              <div class="callout warning"><strong>source limitation</strong><span>Forum signal supports L1 context but not reliable active-exploitation proof.</span></div>
-              <div class="callout warning"><strong>timestamp uncertainty</strong><span>Receipt local time visible as 16:50; UTC conversion evidence remains incomplete.</span></div>
+              <div class="callout warning"><strong><span class="en">source limitation</span><span class="cn">来源限制 (source limitation)</span></strong><span><span class="en">Forum signal supports L1 context but not reliable active-exploitation proof.</span><span class="cn">论坛信号可支撑 L1 上下文，但不足以构成可靠的在野利用证明。</span></span></div>
+              <div class="callout warning"><strong><span class="en">timestamp uncertainty</span><span class="cn">时间戳不确定性 (timestamp uncertainty)</span></strong><span><span class="en">Receipt local time visible as 16:50; UTC conversion evidence remains incomplete.</span><span class="cn">回执本地时间显示为 16:50；UTC 转换证据仍不完整。</span></span></div>
             </div>
           </div>
           <div class="panel">
             <div class="panel-head"><div><h3 class="panel-title"><span class="en">Evidence timeline</span><span class="cn">证据时间线</span></h3><p class="panel-sub"><span class="en">Generated and attached events append from local state.</span><span class="cn">生成与附加事件从本地状态追加。</span></p></div></div>
             <div class="timeline">
-              <div class="event"><time>2026-09-01 08:30Z</time><div><h3>VulnerabilitySignal SIG-001 created</h3><p>Threat-intel source, CVSS 9.1; raw attachment stored but hidden from demo_observer.</p></div></div>
-              <div class="event"><time>2026-09-01 09:15Z</time><div><h3>ReportabilityDecision DEC-001 decided</h3><p>L2 met; L1 unknown; L3 not_met. decision_rule_trace stored with confidence high.</p></div></div>
+              <div class="event"><time>2026-09-01 08:30Z</time><div><h3><span class="en">VulnerabilitySignal SIG-001 created</span><span class="cn">VulnerabilitySignal SIG-001 已创建</span></h3><p><span class="en">Threat-intel source, CVSS 9.1; raw attachment stored but hidden from demo_observer.</span><span class="cn">威胁情报来源，CVSS 9.1；原始附件已存储但对 demo_observer 隐藏。</span></p></div></div>
+              <div class="event"><time>2026-09-01 09:15Z</time><div><h3><span class="en">ReportabilityDecision DEC-001 decided</span><span class="cn">ReportabilityDecision DEC-001 已判定</span></h3><p><span class="en">L2 met; L1 unknown; L3 not_met. decision_rule_trace stored with confidence high.</span><span class="cn">L2 满足；L1 未知；L3 不满足。decision_rule_trace 以 high 置信度存储。</span></p></div></div>
             </div>
             <div class="timeline" data-receipt-events></div>
           </div>

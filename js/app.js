@@ -51,9 +51,9 @@
 
   /* ---------- outcome → pill mapping ---------- */
   var OUTCOME = {
-    reportable:        { cls: 'ok',   en: 'Reportable',          cn: 'Reportable' },
-    not_reportable:    { cls: 'info', en: 'Not reportable',      cn: 'Not reportable' },
-    need_more_evidence:{ cls: 'warn', en: 'Need more evidence',  cn: 'Need more evidence' }
+    reportable:        { cls: 'ok',   en: 'Reportable',          cn: 'Reportable（应报送）' },
+    not_reportable:    { cls: 'info', en: 'Not reportable',      cn: 'Not reportable（不应报送）' },
+    need_more_evidence:{ cls: 'warn', en: 'Need more evidence',  cn: 'Need more evidence（需补充证据）' }
   };
 
   function setPill(el, cls, text) {
@@ -90,8 +90,8 @@
     });
 
     document.querySelectorAll('[data-endorsement-status]').forEach(function (el) {
-      if (state.endorsement === 'endorsed') setPill(el, 'ok', 'endorsed');
-      else setPill(el, 'warn', 'pending');
+      if (state.endorsement === 'endorsed') setPill(el, 'ok', getLang() === 'cn' ? '已背书' : 'endorsed');
+      else setPill(el, 'warn', getLang() === 'cn' ? '待背书' : 'pending');
     });
     document.querySelectorAll('[data-endorsement-summary]').forEach(function (el) {
       el.textContent = state.endorsement === 'endorsed'
@@ -100,15 +100,15 @@
     });
 
     document.querySelectorAll('[data-package-status]').forEach(function (el) {
-      if (state.packagePrepared) setPill(el, 'ok', 'prepared');
-      else setPill(el, 'warn', 'pending');
+      if (state.packagePrepared) setPill(el, 'ok', getLang() === 'cn' ? '已准备' : 'prepared');
+      else setPill(el, 'warn', getLang() === 'cn' ? '待准备' : 'pending');
     });
     document.querySelectorAll('[data-receipt-status]').forEach(function (el) {
       if (state.receipt) setPill(el, 'ok', 'received_registered');
-      else setPill(el, 'warn', 'receipt pending');
+      else setPill(el, 'warn', getLang() === 'cn' ? '回执待处理' : 'receipt pending');
     });
     document.querySelectorAll('[data-sla-risk]').forEach(function (el) {
-      setPill(el, 'danger', 'high');
+      setPill(el, 'danger', getLang() === 'cn' ? '高' : 'high');
     });
 
     renderFooterGuards();
@@ -320,23 +320,30 @@
     var rows = document.querySelectorAll('[data-row-id]');
     if (!rows.length) return;
     var detail = {
-      'SIG-001': { type: 'Signal', id: 'SIG-001', owner: 'M. Chen / SecOps', sla: 'T0 + 14h 22m', next: 'Reviewer endorse', title: 'CVE-2026-12345 / NetShield Edge', blocked: 'Case creation waits for an endorsed reportable decision.', copy: { en: 'L2 severe impact is met; L1 reliability still carries a source limitation.', cn: 'L2 严重影响满足；L1 可靠性仍有来源限制。' } },
-      'DEC-001': { type: 'Decision', id: 'DEC-001', owner: 'A. Rossi / Compliance', sla: 'T0 + 15h', next: 'Endorse on P00', title: 'Reportability decision — reportable', blocked: 'Reviewer comment required before endorsement is written.', copy: { en: 'Outcome reportable at high confidence; endorsement writes the audit event.', cn: 'outcome reportable，置信度 high；背书会写入审计事件。' } },
-      'CASE-014': { type: 'Case', id: 'CASE-014', owner: 'L. Martin / Product Security', sla: '24h open', next: 'Complete ShareTable', title: 'CRA-FR-20260901-01', blocked: 'Country path, UTC timestamp, and evidence refs still missing.', copy: { en: 'Endorsed; ShareTable v2 validation has 3 open blockers.', cn: '已背书；ShareTable v2 校验有 3 个开放阻断项。' } },
-      'GAP-007': { type: 'Gap', id: 'GAP-007', owner: 'J. Novak / Legal Ops', sla: '72h risk', next: 'Add limitation note', title: 'UTC receipt timestamp uncertainty', blocked: 'Receipt local time visible only; UTC conversion evidence incomplete.', copy: { en: 'Timestamp uncertainty stays visible as an explicit compliance risk.', cn: '时间戳不确定性作为明确合规风险保持可见。' } },
-      'DEC-003': { type: 'Decision', id: 'DEC-003', owner: 'S. Weber / Engineering', sla: 'SLA off', next: 'Audit only', title: 'Reportability decision — not_reportable', blocked: 'Not in EEA market; no Case is created (INV-3).', copy: { en: 'not_reportable retained for audit; demonstrates precise non-reporting.', cn: 'not_reportable 留审计；证明精准不报送。' } }
+      'SIG-001': { type: 'Signal', id: 'SIG-001', owner: 'M. Chen / SecOps', sla: 'T0 + 14h 22m', next: { en: 'Reviewer endorse', cn: '审核人背书' }, title: 'CVE-2026-12345 / NetShield Edge', blocked: { en: 'Case creation waits for an endorsed reportable decision.', cn: 'Case 创建等待已背书的 reportable 判断。' }, copy: { en: 'L2 severe impact is met; L1 reliability still carries a source limitation.', cn: 'L2 严重影响满足；L1 可靠性仍有来源限制。' } },
+      'DEC-001': { type: 'Decision', id: 'DEC-001', owner: 'A. Rossi / Compliance', sla: 'T0 + 15h', next: { en: 'Endorse on P00', cn: '在 P00 背书' }, title: 'Reportability decision — reportable', blocked: { en: 'Reviewer comment required before endorsement is written.', cn: '审核人需在写背书前提交评论。' }, copy: { en: 'Outcome reportable at high confidence; endorsement writes the audit event.', cn: 'outcome reportable，置信度 high；背书会写入审计事件。' } },
+      'CASE-014': { type: 'Case', id: 'CASE-014', owner: 'L. Martin / Product Security', sla: '24h open', next: { en: 'Complete ShareTable', cn: '完成 ShareTable' }, title: 'CRA-FR-20260901-01', blocked: { en: 'Country path, UTC timestamp, and evidence refs still missing.', cn: '国家路径、UTC 时间戳与证据引用仍缺失。' }, copy: { en: 'Endorsed; ShareTable v2 validation has 3 open blockers.', cn: '已背书；ShareTable v2 校验有 3 个开放阻断项。' } },
+      'GAP-007': { type: 'Gap', id: 'GAP-007', owner: 'J. Novak / Legal Ops', sla: '72h risk', next: { en: 'Add limitation note', cn: '添加限制说明' }, title: 'UTC receipt timestamp uncertainty', blocked: { en: 'Receipt local time visible only; UTC conversion evidence incomplete.', cn: '仅可见回执本地时间；UTC 转换证据不完整。' }, copy: { en: 'Timestamp uncertainty stays visible as an explicit compliance risk.', cn: '时间戳不确定性作为明确合规风险保持可见。' } },
+      'DEC-003': { type: 'Decision', id: 'DEC-003', owner: 'S. Weber / Engineering', sla: 'SLA off', next: { en: 'Audit only', cn: '仅审计' }, title: 'Reportability decision — not_reportable', blocked: { en: 'Not in EEA market; no Case is created (INV-3).', cn: '不在 EEA 市场；不创建 Case（INV-3）。' }, copy: { en: 'not_reportable retained for audit; demonstrates precise non-reporting.', cn: 'not_reportable 留审计；证明精准不报送。' } }
     };
     function selectRow(row) {
       rows.forEach(function (r) { r.classList.toggle('selected', r === row); });
       var d = detail[row.getAttribute('data-row-id')];
       if (!d) return;
       var set = function (sel, v) { var el = document.querySelector(sel); if (el) { if ('value' in el) el.value = v; else el.textContent = v; } };
-      set('[data-detail-type]', d.type); set('[data-detail-id]', d.id); set('[data-detail-owner]', d.owner);
-      set('[data-detail-sla]', d.sla); set('[data-detail-next]', d.next); set('[data-detail-title]', d.title);
-      set('[data-detail-blocked]', d.blocked);
+      set('[data-detail-type]', getLang() === 'cn' ? (d.type === 'Signal' ? '信号 (Signal)' : d.type === 'Decision' ? '判断 (Decision)' : d.type === 'Case' ? 'Case' : d.type === 'Gap' ? '缺口 (Gap)' : d.type) : d.type);
+      set('[data-detail-id]', d.id); set('[data-detail-owner]', d.owner);
+      set('[data-detail-sla]', d.sla); set('[data-detail-next]', t(d.next)); set('[data-detail-title]', d.title);
+      set('[data-detail-blocked]', t(d.blocked));
       var copy = document.querySelector('[data-detail-copy]'); if (copy) copy.textContent = t(d.copy);
     }
     rows.forEach(function (r) { r.addEventListener('click', function () { selectRow(r); }); });
+
+    /* re-select on lang change to update detail panel */
+    document.addEventListener('langchange', function () {
+      var sel = document.querySelector('[data-row-id].selected');
+      if (sel) selectRow(sel);
+    });
 
     document.querySelectorAll('[data-filter]').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -387,7 +394,7 @@
       });
       var ready = document.querySelector('[data-sharetable-ready]');
       var openHard = items.some(function (b) { return b.hard && !b.cleared; });
-      if (ready) setPill(ready, openHard ? 'danger' : 'ok', openHard ? 'validation_pending' : 'validation_pass');
+      if (ready) setPill(ready, openHard ? 'danger' : 'ok', openHard ? (getLang() === 'cn' ? '校验待决' : 'validation_pending') : (getLang() === 'cn' ? '校验通过' : 'validation_pass'));
     }
     function updateCount() {
       var open = blockers().filter(function (b) { return !b.cleared; }).length;

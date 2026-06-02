@@ -27,7 +27,7 @@
 
     <main class="main">
       <header class="topbar">
-        <div class="crumbs">P02 / Case &amp; ShareTable v2 data completion</div>
+        <div class="crumbs"><span class="en">P02 / Case &amp; ShareTable v2 data completion</span><span class="cn">P02 / Case 与 ShareTable v2 数据完成</span></div>
         <div class="toolbar"><div class="lang-toggle"><button type="button" data-lang-target="en">EN</button><button type="button" data-lang-target="cn">中文</button></div></div>
       </header>
 
@@ -90,7 +90,7 @@
               <div class="panel-head"><div><h3 class="panel-title">AffectedProductVersion</h3><p class="panel-sub"><span class="en">Repeating rows keyed by case_id + product_model + affected_version + market_country.</span><span class="cn">重复行键为 case_id + product_model + affected_version + market_country。</span></p></div><button class="btn" type="button" data-add-product><span class="en">Confirm rows</span><span class="cn">确认行</span></button></div>
               <div class="table-wrap">
                 <table>
-                  <thead><tr><th>product_model</th><th>affected_version</th><th>fixed_version</th><th>market</th><th>installed_base</th><th>evidence_ref</th><th>state</th></tr></thead>
+                  <thead><tr><th><span class="en">product_model</span><span class="cn">产品型号 (product_model)</span></th><th><span class="en">affected_version</span><span class="cn">受影响版本 (affected_version)</span></th><th><span class="en">fixed_version</span><span class="cn">修复版本 (fixed_version)</span></th><th><span class="en">market</span><span class="cn">市场 (market)</span></th><th><span class="en">installed_base</span><span class="cn">安装基数 (installed_base)</span></th><th><span class="en">evidence_ref</span><span class="cn">证据引用 (evidence_ref)</span></th><th><span class="en">state</span><span class="cn">状态 (state)</span></th></tr></thead>
                   <tbody>
                     <tr><td>NetShield Edge 400</td><td class="mono">2.8.0–2.8.4</td><td class="mono">2.8.6</td><td>FR</td><td class="mono">52</td><td class="mono">PROD-17</td><td><span class="pill ok">scoped</span></td></tr>
                     <tr><td>NetShield Edge 400</td><td class="mono">2.8.0–2.8.4</td><td class="mono">2.8.6</td><td>DE</td><td class="mono">44</td><td class="mono">PROD-18</td><td><span class="pill ok">scoped</span></td></tr>
@@ -104,10 +104,10 @@
 
             <section class="tab-panel" data-tab-panel="country">
               <div class="grid two">
-                <div class="callout info"><strong>FR · ready</strong><span>fr_portal_product_vulnerability · Club-SSI style request reference.</span></div>
-                <div class="callout warning"><strong>DE · testing</strong><span>BSI testing period path; no production SRP integration claim.</span></div>
-                <div class="callout warning"><strong>ES · fallback</strong><span>CCN-CERT email fallback with country-note reviewer before submission.</span></div>
-                <div class="callout danger"><strong>IT · gap</strong><span>Authority path metadata incomplete; dashboard counts it as a known gap.</span></div>
+                <div class="callout info"><strong><span class="en">FR · ready</span><span class="cn">FR · 就绪 (ready)</span></strong><span><span class="en">fr_portal_product_vulnerability · Club-SSI style request reference.</span><span class="cn">fr_portal_product_vulnerability · Club-SSI 风格请求引用。</span></span></div>
+                <div class="callout warning"><strong><span class="en">DE · testing</span><span class="cn">DE · 测试中 (testing)</span></strong><span><span class="en">BSI testing period path; no production SRP integration claim.</span><span class="cn">BSI 测试期路径；不宣称生产 SRP 集成。</span></span></div>
+                <div class="callout warning"><strong><span class="en">ES · fallback</span><span class="cn">ES · 降级通道 (fallback)</span></strong><span><span class="en">CCN-CERT email fallback with country-note reviewer before submission.</span><span class="cn">CCN-CERT 邮件降级通道，提交前需国家审核人备注。</span></span></div>
+                <div class="callout danger"><strong><span class="en">IT · gap</span><span class="cn">IT · 缺口 (gap)</span></strong><span><span class="en">Authority path metadata incomplete; dashboard counts it as a known gap.</span><span class="cn">机构路径元数据不完整；仪表盘将其计为已知缺口。</span></span></div>
               </div>
             </section>
           </div>
